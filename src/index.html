@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>AugJS - JS UI Framework</title>
+</head>
+
+<body>
+	<button onclick="app.setView('#main')">Page 1</button>
+	<button onclick="app.setView('#second')">Page 2</button>
+
+  <aug-app></aug-app>
+
+  <template id="main">
+  	<style>p {color: red}</style>
+
+    <div class="content">
+			<button onclick="childAug.setView('#child1', app)">Section 1</button>
+			<button onclick="childAug.setView('#child2', app)">Section 2</button>
+			<h1>Page 1</h1>
+  		<aug-child></aug-child>
+    </div>
+
+		<template id="child1">
+			<h4>Child 1</h4>
+		</template>
+
+		<template id="child2">
+			<h4>Child 2</h4>
+		</template>
+
+    <script>
+    	console.log("In App 1!")
+    	var childAug = new Aug();
+    	childAug.setChildAug(app, "aug-child");
+    	childAug.setView("#child1", app);
+    </script>
+  </template>
+
+  <template id="second">
+  	<style>p {color: blue}</style>
+
+  	<div class="content">
+	    <h2>Page 2</h2>
+	    <p>This is the second page</p>
+		</div>
+
+    <script>console.log("In App 2!")</script>
+  </template>
+
+</body>
+
+<!-- Import AugJS Framework -->
+<script src="./aug.js"></script>
+
+<!-- Custom Augs -->
+<script>
+	var app = new Aug();
+	app.setRoot("aug-app");
+	app.setView("#main");
+</script>
+
+</html>
