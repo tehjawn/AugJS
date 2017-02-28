@@ -6,58 +6,75 @@
 </head>
 
 <body>
-	<button onclick="app.setView('#main')">Page 1</button>
-	<button onclick="app.setView('#second')">Page 2</button>
+  <div id="app"></div>
+  <canvas></canvas>
+  <!-- Import AugJS Framework -->
+  <script src="./aug.js"></script>
+  <!-- Custom Augs -->
+  <script>
+  var app = new Aug("app");
+  app.printRoot();
 
-  <aug-app></aug-app>
+  console.log(app.getModels("{{hello}} this is a {{test}}"))
+  document.addEventListener('touchmove', function(e) {
+    e.preventDefault()
+  })
+  var c = document.getElementsByTagName('canvas')[0],
+    x = c.getContext('2d'),
+    pr = window.devicePixelRatio || 1,
+    w = window.innerWidth,
+    h = window.innerHeight,
+    f = 90,
+    q,
+    m = Math,
+    r = 0,
+    u = m.PI * 2,
+    v = m.cos,
+    z = m.random
+  c.width = w * pr
+  c.height = h * pr
+  x.scale(pr, pr)
+  x.globalAlpha = 0.6
 
-  <template id="main">
-  	<style>p {color: red}</style>
+  function i() {
+    x.clearRect(0, 0, w, h)
+    q = [{
+      x: 0,
+      y: h * .7 + f
+    }, {
+      x: 0,
+      y: h * .7 - f
+    }]
+    while (q[1].x < w + f) d(q[0], q[1])
+  }
 
-    <div class="content">
-			<button onclick="childAug.setView('#child1', app)">Section 1</button>
-			<button onclick="childAug.setView('#child2', app)">Section 2</button>
-			<h1>Page 1</h1>
-  		<aug-child></aug-child>
-    </div>
+  function d(i, j) {
+    x.beginPath()
+    x.moveTo(i.x, i.y)
+    x.lineTo(j.x, j.y)
+    var k = j.x + (z() * 2 - 0.25) * f,
+      n = y(j.y)
+    x.lineTo(k, n)
+    x.closePath()
+    r -= u / -50
+    x.fillStyle = '#' + (v(r) * 127 + 128 << 16 | v(r + u / 3) * 127 + 128 << 8 | v(r + u / 3 * 2) * 127 + 128).toString(16)
+    x.fill()
+    q[0] = q[1]
+    q[1] = {
+      x: k,
+      y: n
+    }
+  }
 
-		<template id="child1">
-			<h4>Child 1</h4>
-		</template>
-
-		<template id="child2">
-			<h4>Child 2</h4>
-		</template>
-
-    <script>
-    	console.log("In App 1!")
-    	var childAug = new Aug();
-    	childAug.setChildAug(app, "aug-child");
-    	childAug.setView("#child1", app);
-    </script>
-  </template>
-
-  <template id="second">
-  	<style>p {color: blue}</style>
-
-  	<div class="content">
-	    <h2>Page 2</h2>
-	    <p>This is the second page</p>
-		</div>
-
-    <script>console.log("In App 2!")</script>
-  </template>
-
+  function y(p) {
+    var t = p + (z() * 2 - 1.1) * f
+    return (t > h || t < 0) ? y(p) : t
+  }
+  document.onclick = i
+  document.ontouchstart = i
+  i()
+  // setInterval(i, 100)
+  </script>
 </body>
-
-<!-- Import AugJS Framework -->
-<script src="./aug.js"></script>
-
-<!-- Custom Augs -->
-<script>
-	var app = new Aug();
-	app.setRoot("aug-app");
-	app.setView("#main");
-</script>
 
 </html>
