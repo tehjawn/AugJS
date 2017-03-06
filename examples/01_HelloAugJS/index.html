@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HelloAugJS</title>
+  </head>
+  <body>
+    <aug-app></aug-app>
+
+    <template id="mainView">
+      <style>
+        p {
+          color: red;
+        }
+      </style>
+
+      <div>
+        <h1>Hello, AugJS!</h1>
+      </div>
+
+      <script type="text/javascript">
+        console.log("My first AugJS App!")
+      </script>
+    </template>
+
+  </body>
+  <script src="../../src/aug.js"></script>
+  <script>
+    var app = new Aug()
+
+    app.setRoot("aug-app");
+    app.setView("#mainView");
+  </script>
+</html>

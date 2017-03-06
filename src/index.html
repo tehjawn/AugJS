@@ -15,19 +15,21 @@
   <!-- Header Component -->
   <aug-Header>
     <h1>AugJS</h1>
+    <h4>v0.1</h4>
     <p>
       <a href="https://github.com/tehjawn/AugJS">
         <img src="./assets/github.png" alt="" width="30px">
       </a>
       <br>
       <br>
-      A View Library with <strong>Custom Web Components</strong> within a <strong>Single Page Application</strong></p>
+      <p><strong>Custom Web Components</strong> + <strong>Single Page Application</strong> Framework for the Web</p>
   </aug-Header>
 
   <!-- Menu -->
   <!-- Sets the Aug View to specified template -->
   <div class="menu">
-    <button onclick="app.setView('#how-to-use')">How to Use</button>
+    <button onclick="app.setView('#getting-started')">Get Started</button>
+      <button onclick="app.setView('#docs')">Docs</button>
     <button onclick="app.setView('#examples')">Examples</button>
     <button onclick="app.setView('#about')">About</button>
   </div>
@@ -44,17 +46,19 @@
       <a href="https://github.com/tehjawn/AugJS">
         <img src="./assets/github.png" alt="" width="30px">
       </a>
+      <br>
+      John Nguyen 2017
     </p>
   </aug-Header>
 
   <!-- Template 1: How To Use Page -->
-  <template id="how-to-use">
+  <template id="getting-started">
     <style>
       p {color: #333;}
     </style>
 
     <div class="content">
-      <p><strong>AugJS</strong> is a library that will help you modularize your HTML, CSS and Javascript components.</p>
+      <p><strong>AugJS</strong> is a lightweight wrapper for the Shadow DOM web standard that will help you build modular HTML, CSS and Javascript components.</p>
       <p>Using AugJS, you can create singular, encapsulated widgets that have scoped CSS and Javascript.</p>
       <p>You can also use the templating framework to create Single Page Apps!</p>
       <strong>Let's get started!</strong>
@@ -79,21 +83,160 @@
 
       <strong>2. Create a "Root Element".</strong>
       <p>The specified element will be targeted by AugJS when changes are made to the view.</p>
-      <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">&lt;aug-content</span><span style="color: #f92672">&gt;</span><span style="color: #f92672">&lt;aug-content</span><span style="color: #f92672">/&gt;</span>
+      <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">&lt;aug-app</span><span style="color: #f92672">&gt;</span><span style="color: #f92672">&lt;aug-app</span><span style="color: #f92672">/&gt;</span></pre></div>
 
+            <br><br><br>
+
+            <strong>3. Create your first Aug Component.</strong>
+            <p>Using the HTML Template approach, you can structure your very own AugJS Templates!</p>
+
+      <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">&lt;template</span> <span style="color: #a6e22e">id=</span><span style="color: #e6db74">&quot;mainView&quot;</span><span style="color: #f92672">&gt;</span>
+  <span style="color: #f92672">&lt;style&gt;</span>
+    <span style="color: #a6e22e">.content</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">padding</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">20px</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f92672">&lt;/style&gt;</span>
+
+  <span style="color: #f92672">&lt;div</span> <span style="color: #a6e22e">class=</span><span style="color: #e6db74">&quot;content&quot;</span><span style="color: #f92672">&gt;</span>
+    <span style="color: #f92672">&lt;h1&gt;</span><span style="color: white">Hello, World!</span><span style="color: #f92672">&lt;/h1&gt;</span>
+  <span style="color: #f92672">&lt;/div&gt;</span>
+
+  <span style="color: #f92672">&lt;script&gt;</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;In Main View!&quot;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f92672">&lt;/script&gt;</span>
+<span style="color: #f92672">&lt;/template&gt;</span></pre></div>
+
+
+      <br><br><br>
+
+      <strong>4. Initialize your Aug app.</strong>
+      <p>Set a var equal to a new Aug().</p>
+      <p>You can pass in the root element as a parameter, or set it manually with .setRoot(element_name).</p>
+      <p>After you set the root element of your new Augject, you can then set its View with the .setView(target_div_id) method.</p>
+
+
+
+      <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">
 <span style="color: #75715e">&lt;!-- Initialize AugJS App --&gt;</span>
 <span style="color: #f92672">&lt;script&gt;</span>
   <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Aug</span><span style="color: #f8f8f2">()</span>
 
-  <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setRoot</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;aug-content&quot;</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setView</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;#how-to-use&quot;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setRoot</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;aug-app&quot;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setView</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;#mainView&quot;</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f92672">&lt;/script&gt;</span></pre></div>
 
+      <br><br><br>
+      <hr>
 
+      <h1>Awesome!</h1>
+      <p>You've made your very first AugJS component!</p>
+      <p>You may notice a few things:</p>
+      <ul>
+        <li>
+          <strong>Why doesn't the template appear without AugJS?</strong>
+          <p>Good question! The template tag is a native HTML element made for web components and specifically exists to act as a sort of blueprint to be used repetitively in your app! AugJS takes that template and builds a Shadow DOM element out of it, which is then attached to the target root element and - voila! - it pops into existence.</p>
+        </li>
+        <li>
+          <strong>So this thing has scoped CSS now?</strong>
+          <p>Yep! You can have a bunch of templates with CSS that has conflicting names, but they will all stick to their own style tag (which, by the way, you can @import in!). This is done through scoped styling via the Shadow DOM.</p>
+        </li>
+        <li>
+          <strong>How do I make a Single Page Application with this?</strong>
+          <p>You're looking at one right now! This website was built with AugJS. View the source code <a href="https://github.com/tehjawn/AugJS/tree/master/src">here</a>.</p>
+        </li>
+        <li>
+          <strong>Alright, so what is this Shadow DOM thing anyways?</strong>
+          <p>Ho ho ho. It's black magic. You can read the specs <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Shadow_DOM">here</a> if you'd like detailed information.</p>
+        </li>
+      </ul>
+      <p>AugJS is a Work In Progress - if you like what you see, feel free to contribute on Github!</p>
+      <p>In the meantime, if you'd like to learn more, you can <a href="#docs" onclick="app.setView('#docs')">view the documentation</a> or  <a href="#docs" onclick="app.setView('#examples')">check out some example components</a>.</p>
     </div>
   </template>
 
-  <!-- Template 2: Examples Page -->
+  <!-- Template 2: Documentation -->
+  <template id="docs">
+    <div class="content">
+      <h1>AugJS Documentation</h1>
+      <p>Full documentation coming soon! Check out these samples in the meantime.</p>
+      <ol>
+        <li>
+          <strong>Hello, AugJS! - Internal Templates</strong>
+          <p><a href="https://github.com/tehjawn/AugJS/tree/master/examples/01_HelloAugJS">Sample</a></p>
+        </li>
+        <li>
+          <strong>AugJS Modularization - External Components</strong>
+          <p><a href="https://github.com/tehjawn/AugJS/tree/master/examples/02_AugImport">Sample</a></p>
+          <p>Note: External Components are currently only operate as one-way bound static components. This means that reloading the component will cause it to break! Currently working on a fix.</p>
+        </li>
+        <li>
+          <strong>Nested AugJS Components - Child Components</strong>
+          <p><a href="https://github.com/tehjawn/AugJS/tree/master/examples/03_AugChild">Sample</a></p>
+        </li>
+      </ol>
+      <hr>
+      <h3>aug.js</h3>
+      <ul>
+        <li>
+          <strong>Aug(rootElement)</strong>
+          <ul>
+            <li>
+              <p>rootElement: Target element to make root of the AugJS application.</p>
+            </li>
+            <li>
+              <p>shadowRoot: Reference to Augject shadow root.</p>
+            </li>
+          </ul>
+          <p>Purpose: Main object of the AugJS Application used to set and track component views.</p>
+          <p>Usage: <code>var app = new Aug()</code></p>
+        </li>
+        <li>
+          <strong>Aug.setRoot(rootElement)</strong>
+          <ul>
+            <p>rootElement: Target element to make root of the AugJS application.</p>
+          </ul>
+          <p>Purpose: Manually set the root element of the AugJS application.</p>
+          <p>Usage: <code>app.setRoot("aug-app")</code></p>
+          <p>Assumption: <code>&lt;aug-app&gt;&lt;aug-app/&gt;</code></p>
+        </li>
+        <li>
+          <strong>Aug.setView(viewElement, Aug)</strong>
+          <ul>
+            <li>viewElement: Target element to use as the view of target Augject</li>
+            <li>Aug: Used to pass the context of an Augject in Children Augjects</li>
+          </ul>
+          <p>Purpose: Set the visible view of a target Augject.</p>
+          <p>Usage: <code>app.setView("#mainView")</code></p>
+          <p>Assumption: <code>&lt;template id="mainView"&gt;</code></p>
+        </li>
+        <li>
+          <strong>Aug.setChildAug(parentAug, childRootElement)</strong>
+          <ul>
+            <li>parentAug: Target Parent Augject, used to get parent Augject reference for context.</li>
+            <li>childRootElement: Set rootElement of the Child Augject.</li>
+          </ul>
+          <p>Purpose: Set up Child Augs to allow for Nested Augjects</p>
+          <p>Usage:
+<code><pre>var childAug = new Aug();
+childAug.setChildAug(app, "aug-child");
+childAug.setView("#child1", app);
+childAug.setView('#child2', app)</pre></code></p>
+          <p>Assumption: <code><pre>
+var app = new Aug(root)
+&lt;template id="child1"&gt;
+&lt;template id="child2"&gt;
+          </pre></code></p>
+        </li>
+        <li>
+          <strong>Aug.component(targetElement, componentName)</strong>
+          <p>~Undergoing Testing~</p>
+          <p>Purpose: Used to register reusable Augjects</p>
+        </li>
+      </ul>
+    </div>
+  </template>
+
+  <!-- Template 3: Examples Page -->
   <template id="examples">
     <style>p {color: #23ccff;}</style>
 
@@ -101,6 +244,8 @@
       <button onclick="childAug.setView('#child1', app)">Ex 1 - Profile</button>
       <button onclick="childAug.setView('#child2', app)">Ex 2 - Voice</button>
       <h2>Examples</h2>
+      <p>Note: These examples currently have a big bug associated with reloading the external templates.</p>
+      <p>You can try it out anyways by entering a voice command in the Profile page and seeing it appear on the Voice Command page</p>
       <aug-child></aug-child>
     </div>
 
@@ -127,7 +272,7 @@
     </script>
   </template>
 
-    <!-- Template 2: Examples Page -->
+    <!-- Template 4: About Page -->
     <template id="about">
 
       <div class="content">
@@ -158,11 +303,12 @@
   var app = new Aug()
 
 	app.setRoot("aug-content");
-	app.setView("#how-to-use");
+	app.setView("#getting-started");
 </script>
 
 <!-- Aug Components -->
 <link rel="import" name="Header" href="components/Header.html">
+<link rel="import" name="Profile" href="components/Profile.html">
 <link rel="import" name="Voice" href="components/Voice.html">
 
 </html>

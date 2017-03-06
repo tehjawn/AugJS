@@ -1,0 +1,20 @@
+<template id="Main">
+  <style>
+    p {
+      color: blue;
+    }
+  </style>
+
+  <div>
+    <h1>Hello, AugJS!</h1>
+    <p>This is my first AugJS External Component!</p>
+  </div>
+
+  <script type="text/javascript">
+    console.log("My first AugJS External Component!")
+  </script>
+</template>
+
+<script>
+  var Main = app.component("#Main", "Main")
+</script>

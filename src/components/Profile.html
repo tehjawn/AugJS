@@ -1,0 +1,49 @@
+<template id="Profile">
+  <style>
+    .profile-container {
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .profile-container ::content img {
+      border-radius: 50%;
+    }
+  </style>
+
+  <div class="profile-container">
+    <content select="img">Profile Picture</content>
+    <content select="h1">Name</content>
+    <button onclick="listen()">Start Voice Command</button>
+  </div>
+</template>
+
+<script>
+  console.log("Profile")
+  var Profile = app.component("#Profile", "Profile")
+
+  // Voice Test
+  var recognition = new webkitSpeechRecognition();
+  recognition.lang = 'en-US';
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 5;
+
+  recognition.onend = function(event) {
+    console.log('You said: ', event.results[0][0].transcript);
+    // Voice.querySelector("#speech-to-text").innerHTML = event.results[0][0].transcript;
+
+    if(event.results[0][0].transcript === 'one two three') {
+      Voice.querySelector("#speech-to-text").innerHTML = "three to the one to the one to the three"
+    } else if(event.results[0][0].transcript === 'banana') {
+      Voice.querySelector("#speech-to-text").innerHTML = "Ring ring ring ring ring ring ring, banana phone"
+    } else if(event.results[0][0].transcript === 'dank memes') {
+      Voice.querySelector("#speech-to-text").innerHTML = "Such Java, much Script"
+    } else {
+      Voice.querySelector("#speech-to-text").innerHTML = event.results[0][0].transcript;
+    }
+  };
+
+  function listen() {
+    console.log("Listening...")
+    recognition.start()
+  }
+</script>

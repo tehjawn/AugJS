@@ -11,11 +11,28 @@
 
   <div class="voice-container">
     <div class="container">
-      <h1>Voice Component</h1>
+      <h1>Voice Commands Component</h1>
+      <span id="speech-to-text">Test</span>
     </div>
   </div>
 </template>
 
 <script>
+  console.log("Voice")
   var Voice = app.component("#Voice", "Voice")
+
+  var recognition = new webkitSpeechRecognition();
+  recognition.lang = 'en-US';
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 5;
+
+  recognition.onresult = function(event) {
+    console.log('You said: ', event.results[0][0].transcript);
+    Voice.querySelector("#speech-to-text").innerHTML = event.results[0][0].transcript;
+  };
+
+  function listen() {
+    console.log("Listening...")
+    recognition.start()
+  }
 </script>

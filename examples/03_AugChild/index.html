@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HelloAugJS</title>
+  </head>
+  <body>
+    <aug-app></aug-app>
+
+    <template id="mainView">
+      <style>
+        p {
+          color: red;
+        }
+      </style>
+
+      <div>
+        <h1>Hello, AugJS!</h1>
+        <button onclick="childAug.setView('#child1', app)">Child 1</button>
+        <button onclick="childAug.setView('#child2', app)">Child 2</button>
+        <aug-child></aug-child>
+      </div>
+      <template id="child1">
+        <style>
+          h4 { color: red; }
+        </style>
+        <h4>Child 1</h4>
+        <p>Hello,</p>
+      </template>
+
+      <!-- Template 2, Child Template 2: Voice Command Component Example -->
+      <template id="child2">
+        <style>
+          h4 { color: blue; }
+        </style>
+        <h4>Child 2</h4>
+        <p>World!</p>
+      </template>
+
+      <script>
+        console.log("Creating Nested Augjects!")
+        var childAug = new Aug();
+        childAug.setChildAug(app, "aug-child");
+        childAug.setView("#child1", app);
+      </script>
+    </template>
+
+  </body>
+  <script src="../../src/aug.js"></script>
+  <script>
+    var app = new Aug()
+
+    app.setRoot("aug-app");
+    app.setView("#mainView");
+  </script>
+</html>
