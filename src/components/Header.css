@@ -1,0 +1,15 @@
+.header-container {
+  background-color: #272822;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.header-container ::content h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.header-container ::content p {
+  color: gray;
+}

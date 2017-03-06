@@ -1,0 +1,14 @@
+<template id="Header">
+  <style>
+    @import url("components/Header.css");
+  </style>
+
+  <div class="header-container">
+    <content select="h1">Title</content>
+    <content select="p">Subtitle</content>
+  </div>
+</template>
+
+<script>
+  var Header = app.component("#Header", "Header")
+</script>

@@ -1,0 +1,12 @@
+{
+  "name": "AugJS",
+  "version": "1.0.0",
+  "description": "Javascript View Framework",
+  "main": "index.js",
+  "repository": "https://github.com/tehjawn/AugJS.git",
+  "author": "jn23 <tehjawn@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "echo 'Read AugJS documentation at www.github.com/tehjawn/AugJS'"
+  }
+}
