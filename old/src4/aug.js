@@ -33,6 +33,10 @@ class Aug {
     return template.content
   }
 
+  setView(targetElement, componentName) {
+    
+  }
+
 }
 
 // Helper Functions

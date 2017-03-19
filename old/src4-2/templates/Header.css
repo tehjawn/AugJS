@@ -1,0 +1,32 @@
+.header-container {
+  /*background-color: #272822;*/
+  background: -webkit-linear-gradient(#272822 30%, #3F4FCC 90%, #35C0C5);
+  background: linear-gradient(#272822 30%, #3F4FAC 90%, #15A0A5);
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.header-container ::content h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.header-container ::content p {
+  color: #ccc;
+}
+
+.a-btn-ctn {
+  padding: 8px 24px;
+  border-radius: 4px;
+  background-color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14pt;
+}
+
+.a-btn {
+  background: -webkit-linear-gradient(top right, #3F4FCC, #35C0C5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

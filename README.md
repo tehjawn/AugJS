@@ -1,4 +1,4 @@
-![AugLogo](AugLogo.png)
+<img src="AugLogo.png" width="80">
 # AugJS
 ### A Simple Component-based Javascript Framework
 

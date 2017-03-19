@@ -1,0 +1,30 @@
+<template id="header">
+  <style>
+    @import url("templates/Header.css");
+  </style>
+
+  <div class="header-container">
+    <content select="img"></content>
+    <content select="h1">
+      <h1>
+        Title
+      </h1>
+    </content>
+    <content select="p">
+      <p>
+        Description
+      </p>
+    </content>
+    <br>
+    <a class="a-btn-ctn" href="#tutorial">
+      <span class="a-btn">Get Started</span>
+    </a>
+  </div>
+</template>
+
+<script>
+  let header = app.component({
+    template: "#header",
+    component: "header"
+  })
+</script>

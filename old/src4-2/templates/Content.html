@@ -93,5 +93,8 @@
 </template>
 
 <script>
-  let content = app.component("#content", "my-content")
+  let content = app.component({
+    template: "#content",
+    component: "my-content"
+  })
 </script>

@@ -1,8 +1,13 @@
 .header-container {
-  background-color: #272822;
+  /*background-color: #272822;*/
+  background: -webkit-linear-gradient(#272822 30%, #3F4FCC 90%, #35C0C5);
+  background: -webkit-linear-gradient(#272822 30%, #3F4FAC 90%, #15A0A5);
+  background: linear-gradient(#272822 30%, #3F4FAC 90%, #15A0A5);
   color: white;
   text-align: center;
-  padding: 30px 20px;
+  padding: 40px 20px;
+  -webkit-perspective: 1500px;
+          perspective: 1500px;
 }
 
 .header-container ::content h1 {
@@ -11,20 +16,47 @@
 }
 
 .header-container ::content p {
-  color: gray;
+  color: #ccc;
 }
 
 .a-btn-ctn {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+  max-width: 400px;
   padding: 8px 24px;
   border-radius: 4px;
   background-color: white;
   text-decoration: none;
   font-weight: 600;
   font-size: 14pt;
+  border: 0;
+  box-shadow: 0 3px 15px -3px black;
+}
+
+.a-btn-ctn:hover {
+  box-shadow: 0 0 15px -3px black;
 }
 
 .a-btn {
-  background: -webkit-linear-gradient(top right, #3F4FCC, #35C0C5);
+  background: -webkit-linear-gradient(top, #3F4FCC, #35C0C5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.a-btn:hover {
+  background: -webkit-linear-gradient(bottom, #3F4FCC, #35C0C5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-filter: contrast(120%) brightness(120%);
+  filter: contrast(120%) brightness(120%);
+}
+
+.github-icon {
+  -webkit-filter: contrast(0%) brightness(1000%);
+          filter: contrast(0%) brightness(1000%);
+  width: 40px
 }
