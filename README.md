@@ -1,3 +1,4 @@
+![AugLogo](AugLogo.png)
 # AugJS
 ### A Simple Component-based Javascript Framework
 

@@ -1,0 +1,54 @@
+<template id="content">
+  <style>
+    .content-container {
+      padding: 24px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .content-container::content tagline {
+      margin: 0 auto;
+    }
+
+    .ft {
+      display: flex;
+      width: 100%;
+    }
+
+    .ft-desc {
+      width: 50%;
+    }
+
+    .ft-img {
+      width: 50%;
+    }
+
+  </style>
+  <div class="content-container">
+    <div style="text-align: center">
+      <content select="tagline">Body Content</content>
+      <h1>Features</h1>
+    </div>
+    <div class="ft">
+      <div class="ft-desc">
+        <h3>
+          <content select="ft-1-title">
+            Feature 1 Title
+          </content>
+        </h3>
+        <p>
+          <content select="ft-1-desc">
+            Feature 1 Description
+          </content>
+        </p>
+      </div>
+      <div class="ft-img">
+        <content select="ft-1-img"></content>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  let content = app.component("#content", "my-content")
+</script>

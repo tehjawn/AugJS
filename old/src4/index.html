@@ -15,7 +15,7 @@
   </head>
   <body>
     <aug-header>
-      <img src="../AugLogo.png" width=100 alt="">
+      <img src="../../AugLogo.png" width=100 alt="">
       <h1>AugJS</h1>
       <p>A Simple, Streamlined UI Templating Framework</p>
     </aug-header>
@@ -27,11 +27,9 @@
         <b>It helps you make UI Templates easily!</b>
       </tagline>
 
-      <feature-1>
-        <h3>Scoped CSS</h3>
-        <p>test</p>
-      </feature-1>
-
+        <ft-1-title>Scoped CSS</ft-1-title>
+        <ft-1-desc>test</ft-1-desc>
+        <ft-1-img><img src="img/ft1.png" alt=""></ft-1-img>
     </aug-my-content>
 
     <aug-footer>
@@ -39,19 +37,14 @@
     </aug-footer>
   </body>
 
+  <script type="text/javascript" src="aug.js"></script>
+
+  <script type="text/javascript">
+    let app = new Aug()
+  </script>
+
   <!-- Aug Components -->
   <link rel="import" name="header" href="templates/Header.html">
   <link rel="import" name="my-content" href="templates/Content.html">
   <link rel="import" name="footer" href="templates/Footer.html">
-
-  <!-- AugJS -->
-  <script type="text/javascript" src="aug.js"></script>
-
-  <!-- Declare AugComponents -->
-  <script type="text/javascript">
-    let header = new Aug({
-      el: 'aug-header',
-      templateId: 'my-header'
-    })
-  </script>
 </html>

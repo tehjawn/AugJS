@@ -1,0 +1,29 @@
+<template id="content">
+  <style>
+    .content-container {
+      padding: 24px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .content-container::content tagline {
+      margin: 0 auto;
+    }
+
+  </style>
+  <div class="content-container">
+    <div style="text-align: center">
+      <content select="tagline">Body Content</content>
+      <h1>Features</h1>
+    </div>
+    <div class="ft-desc">
+      <content select="feature-1 h3">
+        <h3>Feature 1 Title</h3>
+      </content>
+      <content select="feature-1 p">
+        <p>Feature 1 Description</p>
+      </content>
+    </div>
+    <div class="ft-img"></div>
+  </div>
+</template>

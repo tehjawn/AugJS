@@ -1,0 +1,30 @@
+.header-container {
+  background-color: #272822;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.header-container ::content h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.header-container ::content p {
+  color: gray;
+}
+
+.a-btn-ctn {
+  padding: 8px 24px;
+  border-radius: 4px;
+  background-color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14pt;
+}
+
+.a-btn {
+  background: -webkit-linear-gradient(top right, #3F4FCC, #35C0C5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
