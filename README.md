@@ -1,14 +1,28 @@
-<img src="AugLogo.png" width="80">
+<img src="AugLogo.png" width="80"/>
+
 # AugJS
+
 ### A Simple Component-based Javascript Framework
 
 ---
 
-AugJS is a Javascript Framework based around concepts found in frameworks such as React, VueJS and processors such as Pug and HAML, toned down by quite a lot.
+AugJS is a simple, streamlined UI Templating framework that acts as a light-weight wrapper around the upcoming Web Component and Shadow DOM standards.
 
-The name comes from "Augment" and reflects the nature of augment-able components that the framework aims to achieve.
+It's features include:
 
-This is my foray into learning more about how to program using vanilla Javascript!
+- Scoped CSS
+- Straightforward Templating
+- Modularized, Pluggable Code
+
+View SRC3 [here](https://tehjawn.github.io/AugJS/old/src3/)
+View SRC4 [here](https://tehjawn.github.io/AugJS/old/src4/)
+
+---
+
+Latest changes:
+
+- Added SRC4, an ES6 version which has updated designs
+- Began new SRC, which will utilize slot-based template mechanics
 
 ---
 

@@ -20,11 +20,12 @@
 }
 
 .a-btn-ctn {
+  cursor: pointer;
   position: relative;
   left: 50%;
   -webkit-transform: translate(-50%);
           transform: translate(-50%);
-  max-width: 400px;
+  max-width: 360px;
   padding: 8px 24px;
   border-radius: 4px;
   background-color: white;
@@ -55,8 +56,26 @@
   filter: contrast(120%) brightness(120%);
 }
 
+.learn-more {
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #acf;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+.learn-more:hover {
+  background-color: rgba(0,0,0,.2);
+  color: #acf;
+}
+
 .github-icon {
-  -webkit-filter: contrast(0%) brightness(1000%);
-          filter: contrast(0%) brightness(1000%);
-  width: 40px
+  -webkit-filter: contrast(0%) brightness(1000%) drop-shadow(0 3px 5px rgba(0,0,0,.5));
+          filter: contrast(0%) brightness(1000%) drop-shadow(0 3px 5px rgba(0,0,0,.5));
+  width: 40px;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  padding: 16px;
+  background-color: rgba(0,0,0,.1);
 }

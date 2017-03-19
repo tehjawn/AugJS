@@ -22,29 +22,6 @@ function tilt(e) {
       rotateX(${(e.clientY-btn.offsetTop)/10}deg)
       rotateY(${(e.clientX-btn.offsetLeft)/30}deg)
     `
-  // btnText.style.WebkitTransform =
-  //   `
-  //     translate(${(e.clientX-btn.offsetLeft)/60}%, ${(e.clientY-btn.offsetTop)/60}%)
-  //     translateZ(${(Math.abs(e.clientX-btn.offsetLeft)+Math.abs(e.clientY-btn.offsetTop))/10}px)
-  //     rotateX(${-(e.clientY-btn.offsetTop)/60}deg)
-  //     rotateY(${(e.clientX-btn.offsetLeft)/60}deg)
-  //   `
-  //
-  // btnText.style.msTransform =
-  //   `
-  //     translate(${(e.clientX-btn.offsetLeft)/60}%, ${(e.clientY-btn.offsetTop)/60}%)
-  //     translateZ(${(Math.abs(e.clientX-btn.offsetLeft)+Math.abs(e.clientY-btn.offsetTop))/10}px)
-  //     rotateX(${-(e.clientY-btn.offsetTop)/60}deg)
-  //     rotateY(${(e.clientX-btn.offsetLeft)/60}deg)
-  //   `
-  //
-  // btnText.style.transform =
-  //   `
-  //     translate(${(e.clientX-btn.offsetLeft)/60}%, ${(e.clientY-btn.offsetTop)/60}%)
-  //     translateZ(${(Math.abs(e.clientX-btn.offsetLeft)+Math.abs(e.clientY-btn.offsetTop))/10}px)
-  //     rotateX(${-(e.clientY-btn.offsetTop)/60}deg)
-  //     rotateY(${(e.clientX-btn.offsetLeft)/60}deg)
-  //   `
 }
 
 function untilt() {
@@ -68,21 +45,4 @@ function untilt() {
     rotateX(0deg)
     rotateY(0deg)
     `
-
-  // btnText.style.WebkitTransform =
-  //   `
-  //   rotateX(0deg)
-  //   rotateY(0deg)
-  //   `
-  // btnText.style.msTransform =
-  //   `
-  //     rotateX(0deg)
-  //     rotateY(0deg)
-  //   `
-  //
-  // btnText.style.transform =
-  //   `
-  //     rotateX(0deg)
-  //     rotateY(0deg)
-  //   `
 }

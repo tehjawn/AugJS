@@ -17,6 +17,7 @@
     <aug-header>
       <img src="../../AugLogo.png" width=100 alt="">
       <h1>AugJS</h1>
+      <h3>v0.3.0</h3>
       <p>A Simple, Streamlined UI Templating Framework</p>
     </aug-header>
 
@@ -55,4 +56,11 @@
   <link rel="import" name="header" href="templates/Header.html">
   <link rel="import" name="my-content" href="templates/Content.html">
   <link rel="import" name="footer" href="templates/Footer.html">
+
+  <script type="text/javascript">
+    function fancyScroll(aug, selector) {
+      let target = document.querySelector(aug).shadowRoot.querySelector(selector)
+      target.scrollIntoView({behavior: "smooth"});
+    }
+  </script>
 </html>
