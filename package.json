@@ -8,5 +8,9 @@
   "license": "MIT",
   "scripts": {
     "start": "echo 'Read AugJS documentation at www.github.com/tehjawn/AugJS'"
+  },
+  "devDependencies": {
+    "uglify-js": "^2.8.15",
+    "babel-cli": "^6.24.0"
   }
 }

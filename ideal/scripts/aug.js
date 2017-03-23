@@ -13,12 +13,9 @@ class Aug {
    */
 
   constructor({ el, opts } = {}) {
-    this.aug = this.findAugEl({ el })
+    this.augs = this.findAugEl({ el })
 
-    if (opts) {
-      let template = this.findTemplate({ opts })
-      this.aug.innerHTML = this.parseTemplate(template, opts.data)
-    }
+    if (opts) this.setOpts({ opts })
   }
 
   /**
@@ -30,7 +27,10 @@ class Aug {
   setOpts({ opts }) {
     let template = this.findTemplate({ opts })
 
-    this.aug.innerHTML = this.parseTemplate(template, opts.data)
+    for (var aug of this.augs) {
+      let shadow = aug.createShadowRoot({mode: 'open'})
+      shadow.innerHTML = this.parseHandlebars(template, opts.data)
+    }
   }
 
 
@@ -44,7 +44,7 @@ class Aug {
    */
 
   findAugEl({ el } = {}) {
-    console.log(`Searching for ${el}`)
+    // console.log(`Searching for ${el}`)
 
     let augEl = this.select({ el })
 
@@ -65,7 +65,7 @@ class Aug {
   findTemplate({ opts } = {}) {
     let { id } = opts.template
 
-    console.log(`Searching for template with ID ${id}`)
+    // console.log(`Searching for template with ID ${id}`)
 
     let template = this.select({ opts })
 
@@ -84,13 +84,13 @@ class Aug {
    */
   select({ el, opts } = {}) {
 
-    let localTemplate = document.querySelector(el)
+    if (el) {
+      return document.querySelectorAll(el)
+    }
 
-    localTemplate
-      ? console.log(`Found template for ${el}`)
-      : localTemplate = this.importSelectTemplate({ opts })
-
-    return localTemplate
+    if (opts) {
+      return this.importSelectTemplate({ opts })
+    }
   }
 
 
@@ -117,22 +117,23 @@ class Aug {
 
 
   /**
-   * parseTemplate - Takes in an HTML template and parses the '{{}}'s
+   * parseHandlebars - Takes in an HTML template and parses the '{{}}'s
    *
    * @param  {type} template  description
    * @param  {type} data      description
    * @return {type}           description
    */
-  parseTemplate(template, data) {
-    let tem = template.innerHTML.replace(/ /g,'')
+  parseHandlebars(template, data) {
+    let tem = template.innerHTML
 
     while (tem.includes('{{') && tem.includes('}}')) {
 
       let begin = tem.indexOf('{{')
       let end = tem.indexOf('}}')
-      let dataVar = tem.slice(begin+2, end)
+      let dataVar = tem.slice(begin+2, end).replace(/ /g,'')
 
       if (data[dataVar]) {
+            console.log(data[dataVar])
         if (isFunction(data[dataVar])) {
           dataVar = data[dataVar]()
         } else {
