@@ -133,14 +133,18 @@ class Aug {
       let dataVar = tem.slice(begin+2, end).replace(/ /g,'')
 
       if (data[dataVar]) {
-            console.log(data[dataVar])
+        // console.log(data[dataVar])
         if (isFunction(data[dataVar])) {
           dataVar = data[dataVar]()
         } else {
           dataVar = data[dataVar]
         }
       } else {
-        dataVar = ''
+        let jsParse = eval(dataVar)
+        if (typeof jsParse == 'string' || typeof jsParse == 'number')
+          dataVar = jsParse
+        else
+          dataVar = ''
       }
 
       let dvl = dataVar.length
