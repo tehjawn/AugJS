@@ -1,8 +1,10 @@
-<img src="AugLogo.png" width="80"/>
+<center><img src="img/AugLogo.png" width="80"/>
 
 # AugJS
 
 ### A Simple Component-based Javascript Framework
+
+</center>
 
 ---
 
@@ -14,15 +16,15 @@ It's features include:
 - Straightforward Templating
 - Modularized, Pluggable Code
 
-View SRC3 [here](https://tehjawn.github.io/AugJS/old/src3/)
-View SRC4 [here](https://tehjawn.github.io/AugJS/old/src4/)
+View it in action [here](https://tehjawn.github.io/AugJS/src/)
 
 ---
 
 Latest changes:
 
-- Added SRC4, an ES6 version which has updated designs
-- Began new SRC, which will utilize slot-based template mechanics
+- Moved SRC4 and SRC5 to /old
+
+- SRC6 (/src) rewritten from scratch based on legacy Shadow DOM (createShadowRoot and content instead of attachShadow and slot) with additional features such as one-way data-binding through a primitive version of handlebars
 
 ---
 

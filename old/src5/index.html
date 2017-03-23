@@ -15,30 +15,23 @@
   </head>
   <body>
     <aug-header>
-      <img src="../../img/AugLogo.png" width=100 alt="">
+      <img src="../AugLogo.png" width=100 alt="">
       <h1>AugJS</h1>
-      <h3>v0.3.0</h3>
       <p>A Simple, Streamlined UI Templating Framework</p>
     </aug-header>
 
     <aug-my-content>
       <tagline>
         AugJS is a lightweight Web Component + Shadow DOM wrapper.
-        <br/>
+        <br />
         <b>It helps you make UI Templates easily!</b>
       </tagline>
 
-      <ft-1-img><img src="../../img/ft1.png" alt=""></ft-1-img>
-      <ft-1-title>Scoped Cascading Stylesheets</ft-1-title>
-      <ft-1-desc>Overlapping styles don't conflict with each other!</ft-1-desc>
+      <feature-1>
+        <h3>Scoped CSS</h3>
+        <p>test</p>
+      </feature-1>
 
-      <ft-2-img><img src="../../img/ft2.png" alt=""></ft-2-img>
-      <ft-2-title>Straightforward Templating</ft-2-title>
-      <ft-2-desc>Create structured templates with unidirectional data flow.</ft-2-desc>
-
-      <ft-3-img><img src="../../img/ft3.png" alt=""></ft-3-img>
-      <ft-3-title>Modularized, Pluggable Code</ft-3-title>
-      <ft-3-desc>Design modules that can be imported into any AugJS site.</ft-3-desc>
     </aug-my-content>
 
     <aug-footer>
@@ -46,21 +39,19 @@
     </aug-footer>
   </body>
 
-  <script type="text/javascript" src="aug.js"></script>
-
-  <script type="text/javascript">
-    let app = new Aug()
-  </script>
-
   <!-- Aug Components -->
   <link rel="import" name="header" href="templates/Header.html">
   <link rel="import" name="my-content" href="templates/Content.html">
   <link rel="import" name="footer" href="templates/Footer.html">
 
+  <!-- AugJS -->
+  <script type="text/javascript" src="aug.js"></script>
+
+  <!-- Declare AugComponents -->
   <script type="text/javascript">
-    function fancyScroll(aug, selector) {
-      let target = document.querySelector(aug).shadowRoot.querySelector(selector)
-      target.scrollIntoView({behavior: "smooth"});
-    }
+    let header = new Aug({
+      el: 'aug-header',
+      templateId: 'my-header'
+    })
   </script>
 </html>

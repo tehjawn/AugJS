@@ -1,57 +1,70 @@
 <!DOCTYPE html>
 <html>
+<!-- Meta -->
   <head>
-    <!-- Website Metadata -->
-    <title>AugJS - UI Templating Framework</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="John Nguyen">
-    <meta name="description" content="UI Templating Framework">
-    <meta name="theme-color" content="#ffffff">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="main.css">
+    <title>AugJS</title>
+    <link rel="stylesheet" href="styles/ideal.css">
   </head>
+
+<!-- Content -->
   <body>
-    <aug-header>
-      <img src="../AugLogo.png" width=100 alt="">
-      <h1>AugJS</h1>
-      <p>A Simple, Streamlined UI Templating Framework</p>
-    </aug-header>
-
-    <aug-my-content>
-      <tagline>
-        AugJS is a lightweight Web Component + Shadow DOM wrapper.
-        <br />
-        <b>It helps you make UI Templates easily!</b>
-      </tagline>
-
-      <feature-1>
-        <h3>Scoped CSS</h3>
-        <p>test</p>
-      </feature-1>
-
-    </aug-my-content>
-
-    <aug-footer>
-      <span>John Nguyen &bull; March 2017</span>
-    </aug-footer>
+    <aug-main></aug-main>
+    <aug-second>
+      <test>Hello</test>
+    </aug-second>
+    <aug-second>
+      <test>Bye</test>
+    </aug-second>
   </body>
 
-  <!-- Aug Components -->
-  <link rel="import" name="header" href="templates/Header.html">
-  <link rel="import" name="my-content" href="templates/Content.html">
-  <link rel="import" name="footer" href="templates/Footer.html">
+  <!-- Imported Components -->
+  <link rel="import" name="HelloComponent" href="components/hello.html">
+  <link rel="import" name="NewComponent" href="components/new.html">
 
-  <!-- AugJS -->
-  <script type="text/javascript" src="aug.js"></script>
+<!-- Scripts -->
+  <script src="scripts/aug.js"></script>
 
-  <!-- Declare AugComponents -->
   <script type="text/javascript">
-    let header = new Aug({
-      el: 'aug-header',
-      templateId: 'my-header'
+  // Hello, AugJS!
+
+    let x = 2, y = 3
+
+    let helloOpts = {
+      template: {
+        id: '#helloWorld',
+        src: 'HelloComponent'
+      },
+      data: {
+        text: "Hello, World!",
+        test: function() {
+          return `Greetings! ${x} + ${y} = ${x+y}`
+        }
+      }
+    }
+
+    let aug = new Aug({
+      el: 'aug-main'
     })
+
+    aug.setOpts({ opts: helloOpts })
+
+    let newOpts = {
+      template: {
+        id: '#new',
+        src: 'NewComponent'
+      },
+      data: {
+        yay: "Super",
+        popup: function() {
+          return `alert('hello')`
+        }
+      }
+    }
+
+    let second = new Aug({
+      el: 'aug-second',
+      opts: newOpts
+    })
+
   </script>
 </html>
