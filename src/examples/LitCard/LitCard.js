@@ -30,6 +30,16 @@
     }
   }
 
+  function litMode() {
+    let colors = ['green', 'red', 'blue']
+    let i = 0
+    setInterval(() => {
+      setBorderHue(colors[i])
+      i++
+      if (i > 2) i = 0
+    }, 200)
+  }
+
   function tilt(e) {
     litDivLight.style.opacity = `${ (-(e.clientY - litDiv.offsetTop) + (e.clientX - litDiv.offsetLeft)) / 1000}`
 
