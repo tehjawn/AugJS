@@ -1,30 +1,190 @@
 <template id="AugJS-template">
-  <div>
-    <h1>AugJS Tutorial</h1>
+  <style>
+    @import url( '../styles/ideal.css');
+
+    h2 {
+      background-color: #15A0A5;
+      padding: 8px;
+      color: white;
+      width: auto;
+    }
+  </style>
+
+  <div class="ctn">
+    <h1>AugJS Tutorials</h1>
     <hr>
-    <h2><u>Step 0: What is AugJS and Why Should I Use It?</u></h2>
+
+    <!-- FOREWARD -->
+    <h2>
+      <u>What is AugJS and Why Should I Use It?</u>
+    </h2>
     <p>
-      <strong>AugJS</strong> allows you to create UI Templates easily using plain old HTML and Javascript.
+      <strong>AugJS</strong>
+      allows you to create UI Templates easily using plain old HTML and Javascript. It was created by John Nguyen in order to learn more about how other client-side MVW frameworks worked.
       <br>
       <br>
-      <u>Features include:</u>
+      If you've ever used AngularJS, VueJS, or Polymer you will find AugJS to be similar, though much smaller in size and in scope.
+      <br>
+      <br>
+      <u>AugJS's Features include:</u>
       <ul>
-        <li><strong>Scoped CSS</strong>, so that your styles never clash.</li>
-        <li><strong>Straightforward Templating</strong>, that enable you to create client-rendered pages through a unidirectional data flow.</li>
-        <li><strong>Modularity</strong>, allowing you to design components once and use them over and over again on any site with AugJS.</li>
-        <li><strong>Inline Javascript with Handlebars</strong>, for creating dynamic content easily.</li>
+        <li>
+          <strong>Scoped CSS</strong>, so that your styles never clash.</li>
+        <li>
+          <strong>Straightforward Templating</strong>, that enable you to create client-rendered pages through a unidirectional data flow.</li>
+        <li>
+          <strong>Modularity</strong>, allowing you to design components once and use them over and over again on any site with AugJS.</li>
+        <li>
+          <strong>Inline Javascript with Handlebars</strong>, for creating dynamic content easily.</li>
         <li>...with Routing, Directives and more on the roadmap!</li>
       </ul>
       <br>
-      If you've ever used AngularJS, VueJS or React, you can think of AugJS as a tiny version of them.
       <br>
-      <br>
-      <strong>AugJS is ideally used</strong> for developing small Single Page Applications (SPA's) that may have re-usable components.
+      <strong>AugJS is ideally used</strong>
+      for developing small Single Page Applications (SPA's) that may have re-usable components.
     </p>
     <hr>
-    <h2><u>Step 1: Getting Started</u></h2>
+
+    <!-- TUTORIAL 01 -->
+    <h2>
+      <u>Tutorial 01 : Getting Started with AugJS</u>
+    </h2>
+
+    <!-- TUTORIAL 01 STEP 1 -->
+    <h3>Step 1. Download and Reference</h3>
     <p>
-      To start using AugJS
+      To start using AugJS,
+      <a href="https://tehjawn.github.io/AugJS/src/scripts/augjs/aug.js">Download the Framework</a>
+      and add it to your project files.
     </p>
+    <p>
+      In your HTML file, add a script tag and set its source (src) to the location of AugJS.
+    </p>
+    <strong>
+      <u>index.html</u>
+    </strong>
+    <pre style="background:#042029;color:#839496;padding:16px;">// AugJS
+<span style="background-color:rgba(255,255,255,.1);padding:4px;"><span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">script</span> <span style="color:#93a1a1">src</span>=<span style="color:#269186"><span style="color:#269186">"</span>aug.js<span style="color:#269186">"</span></span><span style="color:#586e75">>&lt;/</span><span style="color:#268bd2;font-weight:700">script</span><span style="color:#586e75">></span></span>
+</pre>
+    <p>
+      Awesome, you're now ready to start using AugJS!
+    </p>
+
+    <!-- TUTORIAL 01 STEP 2 -->
+    <h3>Step 2. Create a "Root" Aug Element</h3>
+    <p>
+      It's time to create a container for your custom component! Name it something unique and relevant!
+    </p>
+    <strong>
+      <u>index.html</u>
+    </strong>
+    <pre style="background:#042029;color:#839496;padding:16px;"><span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">body</span><span style="color:#586e75">></span>
+  <span style="background-color:rgba(255,255,255,.1);padding:4px;"><span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">aug-tutorial</span><span style="color:#586e75">></span><span style="color:#586e75">&lt;/</span><span style="color:#268bd2;font-weight:700">aug-tutorial</span><span style="color:#586e75">></span></span>
+<span style="color:#586e75">&lt;/</span><span style="color:#268bd2;font-weight:700">body</span><span style="color:#586e75">></span>
+
+//AugJS
+<span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">script</span> <span style="color:#93a1a1">src</span>=<span style="color:#269186"><span style="color:#269186">"</span>aug.js<span style="color:#269186">"</span></span><span style="color:#586e75">>&lt;/</span><span style="color:#268bd2;font-weight:700">script</span><span style="color:#586e75">></span>
+</pre>
+    <p>
+      Here you can see we chose the name 'aug-tutorial' for our custom component container. This is where we'll be inserting our custom components into!
+    </p>
+
+    <!-- TUTORIAL 01 STEP 3 -->
+    <h3>Step 3. Create a Custom Component</h3>
+    <p>
+      Create a new HTML file and name it something like "TutorialComponent.html". This is where your custom component content will live before you insert it into that 'aug-tutorial' tag you just made.
+    </p>
+    <p>
+      Inside of this HTML file, you'll create an HTML template with a unique ID. This template can include it's own style tag, which will be scoped to the template. This means the content inside won't be affected by external CSS and the content outside won't be affected by the template's CSS.
+    </p>
+    <p>
+      You can even insert script tags which are executed when the template gets loaded!
+    </p>
+    <strong>
+      <u>TutorialComponent.html</u>
+    </strong>
+    <pre style="background:#042029;color:#839496; padding: 16px;"><span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">template</span> <span style="color:#93a1a1">id</span><span style="color:#708284">=</span><span style="color:#269186"><span style="color:#269186">"</span>tutorial-template<span style="color:#269186">"</span></span><span style="color:#586e75">></span>
+<span style="color:#819090;font-style:italic">  <span style="color:#586e75">&lt;</span><span style="font-style:italic">style</span><span style="color:#586e75">></span>
+<span style="color:#536871">    <span style="color:#268bd2">.content</span> </span>{
+      padding: 20px;
+    }
+  <span style="color:#586e75">&lt;/</span><span style="font-style:italic">style</span><span style="color:#586e75">></span></span>
+
+  <span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">div</span> <span style="color:#93a1a1">class</span>=<span style="color:#269186"><span style="color:#269186">"</span>content<span style="color:#269186">"</span></span><span style="color:#586e75">></span>
+    <span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">h1</span><span style="color:#586e75">></span>Hello, World! This is my first AugJS app!<span style="color:#586e75">&lt;/</span><span style="color:#268bd2;font-weight:700">h1</span><span style="color:#586e75">></span>
+  <span style="color:#586e75">&lt;/</span><span style="color:#268bd2;font-weight:700">div</span><span style="color:#586e75">></span>
+
+  <span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">script</span><span style="color:#93a1a1"><span style="color:#586e75">></span>
+    console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">"</span>In Tutorial Component!<span style="color:#c60000">"</span></span><span style="color:#93a1a1">)</span>
+  <span style="color:#586e75">&lt;/</span><span style="color:#268bd2;font-weight:700">script</span><span style="color:#93a1a1"><span style="color:#586e75">></span>
+<span style="color:#586e75">&lt;/</span><span style="color:#268bd2;font-weight:700">template</span><span style="color:#586e75">></span>
+</pre>
+    <p>Super - we've set up our custom component and it's ready to be imported back into our main file.</p>
+
+    <!-- TUTORIAL 01 STEP 4 -->
+    <h3>Step 4. Import Our TutorialComponent</h3>
+    <p>
+      Now that we have our component HTML file set up, we can bring it into our main index file using the new 'import' action of link tags like so:
+    </p>
+    <strong>
+      <u>index.html</u>
+    </strong>
+    <pre style="background:#042029;color:#839496;padding:16px;"><span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">body</span><span style="color:#586e75">></span>
+  <span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">aug-tutorial</span><span style="color:#586e75">></span><span style="color:#586e75">&lt;/</span><span style="color:#268bd2;font-weight:700">aug-tutorial</span><span style="color:#586e75">></span>
+<span style="color:#586e75">&lt;/</span><span style="color:#268bd2;font-weight:700">body</span><span style="color:#586e75">></span>
+
+<span style="background-color:rgba(255,255,255,.1);padding:4px;"><span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">link</span> <span style="color:#93a1a1">rel</span>=<span style="color:#269186"><span style="color:#269186">"</span>import<span style="color:#269186">"</span></span> <span style="color:#93a1a1">name</span>=<span style="color:#269186"><span style="color:#269186">"</span>TutorialComponent<span style="color:#269186">"</span></span> <span style="color:#93a1a1">href</span>=<span style="color:#269186"><span style="color:#269186">"</span>TutorialComponent.html<span style="color:#269186">"</span></span><span style="color:#586e75">></span></span>
+
+//AugJS
+<span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">script</span> <span style="color:#93a1a1">src</span>=<span style="color:#269186"><span style="color:#269186">"</span>aug.js<span style="color:#269186">"</span></span><span style="color:#586e75">>&lt;/</span><span style="color:#268bd2;font-weight:700">script</span><span style="color:#586e75">></span>
+</pre>
+    <p>We give our link a 'name' attribute so that we can refer to the component easily when we finally connnect the new tag we created ('aug-tutorial') to our new component.</p>
+
+    <!-- TUTORIAL 01 STEP 5 -->
+    <h3>Step 5. Linking Custom Tags and Components</h3>
+    <p>
+      Everything is set up! Now all we have to do is link them together. We'll write some Javascript after our AugJS import to handle this.
+    </p>
+    <p>
+      We'll create two new variables, an 'aug' variable that will be a new instance of the Aug class from AugJS and a 'Tutorial' variable that will hold the details of the new Aug component we're creating.
+    </p>
+    <p>
+      Finally, we'll call AugJS's 'registerComponent()' method and pass in the Tutorial object we just created to register the component.
+    </p>
+    <pre style="background:#042029;color:#839496;padding:16px;"><span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">body</span><span style="color:#586e75">></span>
+  <span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">aug</span><span style="color:#93a1a1">-tutorial</span><span style="color:#586e75">></span><span style="color:#586e75">&lt;/</span><span style="color:#268bd2;font-weight:700">aug</span><span style="color:#93a1a1">-tutorial</span><span style="color:#586e75">></span>
+<span style="color:#586e75">&lt;/</span><span style="color:#268bd2;font-weight:700">body</span><span style="color:#586e75">></span>
+
+<span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">link</span> <span style="color:#93a1a1">rel</span>=<span style="color:#269186"><span style="color:#269186">"</span>import<span style="color:#269186">"</span></span> <span style="color:#93a1a1">name</span>=<span style="color:#269186"><span style="color:#269186">"</span>TutorialComponent<span style="color:#269186">"</span></span> <span style="color:#93a1a1">href</span>=<span style="color:#269186"><span style="color:#269186">"</span>TutorialComponent.html<span style="color:#269186">"</span></span><span style="color:#586e75">></span>
+
+//AugJS
+<span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">script</span> <span style="color:#93a1a1">src</span>=<span style="color:#269186"><span style="color:#269186">"</span>aug.js<span style="color:#269186">"</span></span><span style="color:#586e75">>&lt;/</span><span style="color:#268bd2;font-weight:700">script</span><span style="color:#586e75">></span>
+
+<span style="color:cyan"><u>&lt;!-- Custom Component Creation --&gt;</u></span>
+<span style="color:#586e75">&lt;</span><span style="color:#268bd2;font-weight:700">script</span><span style="color:#93a1a1"><span style="color:#586e75">></span>
+  <span style="color:#268bd2">var</span> aug <span style="color:#859900">=</span> <span style="color:#859900">new</span> Aug<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span>
+
+  let Tutorial <span style="color:#859900">=</span> <span style="color:#268bd2">{</span>
+    el: <span style="color:#269186"><span style="color:#c60000">'</span>aug-tutorial<span style="color:#c60000">'</span></span>,
+    opts: <span style="color:#268bd2">{</span>
+      template: <span style="color:#268bd2">{</span>
+        id: <span style="color:#269186"><span style="color:#c60000">'</span>#tutorial-template<span style="color:#c60000">'</span></span>,
+        src: <span style="color:#269186"><span style="color:#c60000">'</span>TutorialComponent<span style="color:#c60000">'</span></span>
+      <span style="color:#268bd2">}</span>
+    <span style="color:#268bd2">}</span>
+  <span style="color:#268bd2">}</span>
+
+  aug.registerComponent<span style="color:#93a1a1">(</span>Tutorial<span style="color:#93a1a1">)</span>
+<span style="color:#586e75">&lt;/</span><span style="color:#268bd2;font-weight:700">script</span><span style="color:#93a1a1"><span style="color:#586e75">></span>
+</pre>
+
+    <h3>The Result</h3>
+    <iframe src="https://embed.plnkr.co/YF31O625FAeQv39kIEFX/" width="100%" height="600px"></iframe>
+    <p>
+      Awesome! You made your first AugJS app! There's more to it than that. Read the Documentation and Examples for more information on how to further utilize AugJS such as inline Javascript and one-way data binding!
+    </p>
+    <br>
+    <br>
+    <br>
   </div>
 </template>
