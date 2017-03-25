@@ -23,37 +23,14 @@
       <span>This section is currently a work in progress!</span>
     </div>
 
-    <div class="tutorial-header">
-      <div class="ctn">
-        <h1>Learn about:</h1>
-
-        <ul class="tutorial-options">
-          <li>
-            <a href="#AugJS" onclick="aug.component('aug-tutorial').setOpts(AugJSOpts)">AugJS</a>
-          </li>
-          <li>
-            <a href="#ES6" class="disabled" onclick="aug.component('aug-tutorial').setOpts(ES6Opts)">ES6</a>
-          </li>
-          <li>
-            <a href="#ShadowDom" class="disabled" onclick="aug.component('aug-tutorial').setOpts(ShadowDOMOpts)">Shadow DOM</a>
-          </li>
-          <li>
-            <a href="#Lit" class="disabled" onclick="aug.component('aug-tutorial').setOpts(LitOpts)">Lit Custom Card</a>
-          </li>
-          <li>
-            <br>
-            <br>
-            <a href="../">
-              <small>&lt;&lt; Back to AugJS Landing Page</small>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <aug-tutorial-header></aug-tutorial-header>
 
     <div class="tutorial-content">
       <aug-tutorial></aug-tutorial>
     </div>
+
+    <aug-tutorial-header></aug-tutorial-header>
+
     <aug-footer>
       <span>
         AugJS v0.6.1 &bull; Created By <a href="https://devpost.com/jnguyen23" style="color:white">John Nguyen</a> &bull; March 2017
@@ -62,6 +39,7 @@
   </body>
 
   <!-- Imported Components -->
+  <link rel="import" name="TutorialHeaderComponent" href="components/TutorialHeader.html">
   <link rel="import" name="AugJSComponent" href="components/AugJS.html">
   <link rel="import" name="ES6Component" href="components/ES6.html">
   <link rel="import" name="ShadowDOMComponent" href="components/ShadowDOM.html">
@@ -72,6 +50,16 @@
   <script src="../scripts/augjs/aug.js"></script>
 
   <script type="text/javascript">
+    let TutorialHeader = {
+      el: 'aug-tutorial-header',
+      opts: {
+        template: {
+          id: '#tutorial-header-template',
+          src: 'TutorialHeaderComponent'
+        }
+      }
+    }
+
     let AugJSOpts = {
       el: 'aug-tutorial',
       opts: {
@@ -124,6 +112,28 @@
 
     var aug = new Aug()
 
-    aug.registerComponents(AugJSOpts, Footer)
+    aug.registerComponents(TutorialHeader, AugJSOpts, Footer)
+
+    // Ghetto AugRouter
+    if (window.location.hash) {
+      console.log(window.location.hash)
+      switch (window.location.hash) {
+        case '#!/AugJS':
+          aug.component('aug-tutorial').setOpts(AugJSOpts)
+          break
+
+        case '#!/ES6':
+          aug.component('aug-tutorial').setOpts(ES6Opts)
+          break
+
+        case '#!/ShadowDom':
+          aug.component('aug-tutorial').setOpts(ShadowDOMOpts)
+          break
+
+        case '#!/Lit':
+          aug.component('aug-tutorial').setOpts(LitOpts)
+          break
+      }
+    }
   </script>
 </html>

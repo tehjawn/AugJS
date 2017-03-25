@@ -1,0 +1,131 @@
+<template id="lit-card-template">
+  <style>
+
+    .lit-bg {
+      height: 100vh;
+      background-image: -webkit-radial-gradient(ellipse farthest-corner at 40% 60%, rgba(255, 0, 200, 0.2) 0%, transparent 55%);
+      background-image: radial-gradient(ellipse farthest-corner at 40% 60%, rgba(255, 0, 200, 0.2) 0%, transparent 55%);
+    }
+
+    .lit-bg-2 {
+      -webkit-perspective: 2000px;
+      perspective: 2000px;
+      height: 100vh;
+      background-image: -webkit-radial-gradient(ellipse farthest-corner at 70% 30%, rgba(0, 0, 255, 0.2) 0%, transparent 35%);
+      background-image: radial-gradient(ellipse farthest-corner at 70% 30%, rgba(0, 0, 255, 0.2) 0%, transparent 35%);
+    }
+
+    .lit-img img {
+      width: 100%;
+      top: 50%;
+      position: absolute;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+
+    .lit-div {
+      width: 50%;
+      max-width: 400px;
+      -webkit-perspective: 500px;
+      perspective: 500px;
+      height: 75vh;
+      max-height: 600px;
+      position: absolute;
+      background-color: black;
+      background: -webkit-linear-gradient(45deg, #300016 1%, black 45%, black 55%, #031143 99%);
+      background: linear-gradient(45deg, #300016 1%, black 45%, black 55%, #031143 99%);
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      background: url("{{imgSrc}}");
+      background-repeat: no-repeat;
+      background-size: cover;
+      box-shadow: 0 3px 15px -5px black;
+      padding: 24px;
+    }
+
+    .lit-div-border {
+      box-sizing: border-box;
+      -webkit-perspective: 3000px;
+      perspective: 3000px;
+      height: 100%;
+      margin: auto;
+      border: 20px solid transparent;
+      -o-border-image: linear-gradient(to bottom left, #94f1f6 0%, #2095F2, #f20369 100%);
+      border-image: -webkit-linear-gradient(top right, #94f1f6 0%, #2095F2, #f20369 100%);
+      border-image: linear-gradient(to bottom left, #94f1f6 0%, #2095F2, #f20369 100%);
+      border-image-slice: 1;
+      -webkit-transition: .6s linear;
+      transition: .6s linear;
+    }
+
+    .lit-light {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: -webkit-linear-gradient(bottom left, transparent 20%, white 75%, transparent);
+      background: linear-gradient(to top right, transparent 20%, white 75%, transparent);
+      opacity: 0;
+    }
+
+    .lit-div-ctn {
+      padding: 24px;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    .lit-div-ctn h1 {
+      position: absolute;
+      background: -webkit-linear-gradient(top right, white, white, transparent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      top: 35%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      font-size: 12em;
+    }
+
+    .lit-div-ctn p {
+      position: absolute;
+      -webkit-transform: rotateZ(90deg);
+      transform: rotateZ(90deg);
+      left: -24px;
+    }
+
+  </style>
+
+  <div class="content">
+    <span style="color:white">
+      http://www.pixelstalk.net/wp-content/uploads/2016/06/HD-Jellyfish-Images-620x392.jpg
+    </span>
+    <br>
+    <input onchange="updateCard()" id="imgSrcInput" type="text" placeholder="Image Source"/>
+    <button onclick="setBorderHue()" name="button">Normal Border</button>
+    <button onclick="setBorderHue('green')" name="button">Green Border</button>
+    <button onclick="setBorderHue('red')" name="button">Red Border</button>
+    <br>
+    <div class="lit-bg">
+      <div class="lit-bg-2">
+        <div class="lit-img" onmousemove="untilt()">
+          <img src="http://dare2worship.com/images/brushstroke(3).png" alt="">
+        </div>
+        <div id="lit-div" class="lit-div" onmousemove="tilt(event)">
+          <div id="lit-div-light" class="lit-light"></div>
+          <div id="lit-div-border" class="lit-div-border">
+            <div class="lit-div-ctn">
+              <p>
+                design is...
+                <span id="mouse"></span>
+              </p>
+              <h1 id="lit-div-text">lit</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -4,8 +4,6 @@
 
 ### A Simple Component-based Javascript Framework
 
-</center>
-
 ---
 
 AugJS is a simple, streamlined UI Templating framework that acts as a light-weight wrapper around the upcoming Web Component and Shadow DOM standards.
@@ -27,7 +25,7 @@ View it in action [here](https://tehjawn.github.io/AugJS/src/)
 
 - v0.4.0 --> v0.6.1 (to match with SRC6 version and some added tweaks)
 
-- Tutorials, Documentation and Examples Pages for v0.6.1 Finished
+- Getting Started Tutorial for v0.6.1 Finished
 
 #### 3/24/2017
 

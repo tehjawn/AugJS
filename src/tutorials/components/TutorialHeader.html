@@ -1,0 +1,45 @@
+<template id="tutorial-header-template">
+  <style>
+    @import url("tutorial.css");
+    @import url("../styles/ideal.css");
+  </style>
+  <div class="tutorial-header">
+    <div class="ctn">
+      <h1>Learn about:</h1>
+
+      <ul class="tutorial-options">
+        <li>
+          <a href="#!/AugJS" onclick="aug.component('aug-tutorial').setOpts(AugJSOpts); scrollToTop()">AugJS</a>
+        </li>
+        <li>
+          <a href="#!/ES6" onclick="aug.component('aug-tutorial').setOpts(ES6Opts); scrollToTop()">ES6</a>
+        </li>
+        <li>
+          <a href="#!/ShadowDom" onclick="aug.component('aug-tutorial').setOpts(ShadowDOMOpts); scrollToTop()">Shadow DOM</a>
+        </li>
+        <li>
+          <a href="#!/Lit" onclick="aug.component('aug-tutorial').setOpts(LitOpts); scrollToTop()">Lit Custom Card</a>
+        </li>
+        <li>
+          <br>
+          <br>
+          <a href="../">
+            <small>&lt;&lt; Back to AugJS Landing Page</small>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+  let timeOut
+
+  function scrollToTop() {
+  	if (document.body.scrollTop != 0 || document.documentElement.scrollTop != 0){
+  		window.scrollBy(0, -30)
+  		timeOut = setTimeout('scrollToTop()',8)
+  	}
+  	else clearTimeout(timeOut)
+  }
+</script>
