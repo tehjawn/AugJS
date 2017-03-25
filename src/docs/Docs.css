@@ -1,0 +1,63 @@
+html, body {
+  background-color: #f0f0f0;
+}
+
+#docs {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 768px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 0 15px -5px black;
+}
+
+.doc-nav {
+  padding: 8px 32px;
+  flex: 1;
+}
+
+@media screen and (max-width: 480px) {
+  .doc-nav {
+    width: 100%;
+  }
+}
+
+.doc-nav h2 {
+  text-align: center;
+  color: #333;
+}
+
+.doc-nav ol {
+  margin: 0;
+  padding: 0 8px;
+}
+
+#docs a {
+  color: #15A0A5;
+}
+
+.doc-nav ol li {
+  font-weight: 600;
+}
+
+.doc-nav ol ol li {
+  font-weight: 400;
+}
+
+.doc-content {
+  background-color: #fafafa;
+  box-shadow: inset 8px 0 15px -15px black;
+  flex: 2;
+  padding: 16px;
+}
+
+.doc-content .full-code {
+  padding: 16px;
+  overflow-x: scroll;
+  width: 702px;
+  max-width: 100%;
+}
+
+.doc-docs pre {
+  padding: 16px 16px 0 16px;
+}

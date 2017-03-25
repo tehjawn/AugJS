@@ -24,8 +24,14 @@ class Aug {
    * @param  {Object} opts  Options to be used for Augject
    * @return {void}
    */
-  registerComponent({ el, opts }) {
-    let augject = new Augject({ el, opts })
+  registerComponent({
+    el,
+    opts
+  }) {
+    let augject = new Augject({
+      el,
+      opts
+    })
     this.augList.push(augject)
   }
 
@@ -48,10 +54,16 @@ class Aug {
    * @param  {Object} opts  Options to be used to modify target Augject
    * @return {void}
    */
-  setAug({ el, opts }) {
-    for(var augItem of this.augList) {
+  setAug({
+    el,
+    opts
+  }) {
+    for (var augItem of this.augList) {
       if (augItem.augName == el)
-        augItem.setOpts({ el, opts })
+        augItem.setOpts({
+          el,
+          opts
+        })
     }
   }
 
@@ -62,7 +74,7 @@ class Aug {
    * @return {Augject}    An Augject element whose augName matches 'el'
    */
   component(el) {
-    for(var augItem of this.augList) {
+    for (var augItem of this.augList) {
       if (augItem.augName == el)
         return augItem
     }
@@ -84,11 +96,18 @@ class Augject {
    * @return {void}             No return
    */
 
-  constructor({ el, opts } = {}) {
+  constructor({
+    el,
+    opts
+  } = {}) {
     this.augName = el
-    this.augs = this.findAugEl({ el })
+    this.augs = this.findAugEl({
+      el
+    })
 
-    if (opts) this.setOpts({ opts })
+    if (opts) this.setOpts({
+      opts
+    })
   }
 
   /**
@@ -97,17 +116,26 @@ class Augject {
    * @param  {Obj}  opts     Contains all options and properties of element
    * @return {type}          description
    */
-  setOpts({ opts }) {
-    let template = this.findTemplate({ opts })
+  setOpts({
+    opts
+  }) {
+    let template = this.findTemplate({
+      opts
+    })
 
     for (var aug of this.augs) {
       let shadow = undefined
 
-      aug.shadowRoot
-        ? shadow = aug.shadowRoot
-        : shadow = aug.createShadowRoot({mode: 'open'})
+      aug.shadowRoot ?
+        shadow = aug.shadowRoot :
+        shadow = aug.createShadowRoot({
+          mode: 'open'
+        })
 
-      shadow.innerHTML = this.parseHandlebars(template, opts.data)
+      if (!opts.preserve)
+        shadow.innerHTML = this.parseHandlebars(template, opts.data)
+      else
+        shadow.innerHTML = template.innerHTML
     }
   }
 
@@ -121,14 +149,18 @@ class Augject {
    * @return {HTMLObj}
    */
 
-  findAugEl({ el } = {}) {
+  findAugEl({
+    el
+  } = {}) {
     // console.log(`Searching for ${el}`)
 
-    let augEl = this.select({ el })
+    let augEl = this.select({
+      el
+    })
 
-    return augEl
-      ? augEl
-      : `err: No element found with ID ${el}`
+    return augEl ?
+      augEl :
+      `err: No element found with ID ${el}`
   }
 
 
@@ -140,16 +172,22 @@ class Augject {
    * @return {HTMLObj} foundTemplate  The template element that was found
    */
 
-  findTemplate({ opts } = {}) {
-    let { id } = opts.template
+  findTemplate({
+    opts
+  } = {}) {
+    let {
+      id
+    } = opts.template
 
     // console.log(`Searching for template with ID ${id}`)
 
-    let template = this.select({ opts })
+    let template = this.select({
+      opts
+    })
 
-    return template
-      ? template
-      : `err: No template with ID ${id} found.`
+    return template ?
+      template :
+      `err: No template with ID ${id} found.`
   }
 
 
@@ -160,14 +198,19 @@ class Augject {
    * @param  {Obj}    opts        Opt. object with search options
    * @return {HTMLObj} selected   The element that was found (if any)
    */
-  select({ el, opts } = {}) {
+  select({
+    el,
+    opts
+  } = {}) {
 
     if (el) {
       return document.querySelectorAll(el)
     }
 
     if (opts) {
-      return this.importSelectTemplate({ opts })
+      return this.importSelectTemplate({
+        opts
+      })
     }
   }
 
@@ -180,17 +223,22 @@ class Augject {
    * @return {HTMLOBj} importedTemplate
    */
 
-  importSelectTemplate({ opts } = {}) {
+  importSelectTemplate({
+    opts
+  } = {}) {
 
-    let { id, src } = opts.template
+    let {
+      id,
+      src
+    } = opts.template
 
     let component = document.querySelector(`link[rel=import][name=${src}]`)
 
     let importedTemplate = component.import.querySelector(id)
 
-    return importedTemplate
-      ? importedTemplate
-      : `err: No template with ID ${opts.template} found.`
+    return importedTemplate ?
+      importedTemplate :
+      `err: No template with ID ${opts.template} found.`
   }
 
 
@@ -203,42 +251,50 @@ class Augject {
    */
   parseHandlebars(template, data) {
     let tem = template.innerHTML
+    let preserve = false
+    if (data) {
+      if (data.hasOwnProperty('preserve')) {
+        if (data.preserve == true)
+          preserve = true
+      }
+    }
+    if (!preserve) {
+      while (tem.includes('{{') && tem.includes('}}')) {
 
-    while (tem.includes('{{') && tem.includes('}}')) {
+        let begin = tem.indexOf('{{')
+        let end = tem.indexOf('}}')
+        let dataVar = tem.slice(begin + 2, end)
 
-      let begin = tem.indexOf('{{')
-      let end = tem.indexOf('}}')
-      let dataVar = tem.slice(begin+2, end)
-
-      if (data){
-        if (data[dataVar.replace(/ /g,'')]) {
-          dataVar = dataVar.replace(/ /g,'')
-          if (isFunction(data[dataVar])) {
-            dataVar = data[dataVar]()
+        if (data) {
+          if (data[dataVar.replace(/ /g, '')]) {
+            dataVar = dataVar.replace(/ /g, '')
+            if (isFunction(data[dataVar])) {
+              dataVar = data[dataVar]()
+            } else {
+              dataVar = data[dataVar]
+            }
           } else {
-            dataVar = data[dataVar]
+            let jsParse = eval(`(function(){${dataVar}}())`)
+            if (typeof jsParse == 'string' || typeof jsParse == 'number')
+              dataVar = jsParse
+            else
+              dataVar = ''
           }
         } else {
-          let jsParse = eval(arrowSwap(dataVar))
+          // console.log(`Warning: {{${dataVar}}} has no existing data variable!`)
+          dataVar = arrowSwap(dataVar)
+          let jsParse = eval(`(function(){${dataVar}}())`)
           if (typeof jsParse == 'string' || typeof jsParse == 'number')
             dataVar = jsParse
           else
             dataVar = ''
         }
-      } else {
-        // console.log(`Warning: {{${dataVar}}} has no existing data variable!`)
-        dataVar = arrowSwap(dataVar)
-        let jsParse = eval(`(function(){${dataVar}}())`)
-        if (typeof jsParse == 'string' || typeof jsParse == 'number')
-          dataVar = jsParse
-        else
-          dataVar = ''
+
+        tem = tem.slice(0, begin) + dataVar + tem.slice(end + 2, tem.length)
+
       }
-
-      tem =
-        tem.slice(0, begin) + dataVar + tem.slice(end+2, tem.length)
-
     }
+
 
     return tem
   }
@@ -253,5 +309,5 @@ function isFunction(functionToCheck) {
 
 // Helper function to santize &lt; and &gt; into their respective arrow symbols
 function arrowSwap(string) {
-  return string.replace(/&lt;/g, '<').replace(/&gt;/g, '>') 
+  return string.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
 }

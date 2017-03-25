@@ -35,6 +35,14 @@
   box-shadow: 0 3px 15px -3px black;
 }
 
+.a-btn-ctn-2 {
+font-weight: 400;
+padding: 4px 16px;
+font-size: 12pt;
+max-width: 240px;
+background-color: rgba(0,0,0,.5);
+}
+
 .a-btn-ctn:hover {
   box-shadow: 0 0 15px -3px black;
 }

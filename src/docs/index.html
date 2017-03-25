@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <!-- Meta -->
+  <head>
+    <title>AugJS - Documentation</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="John Nguyen">
+    <meta name="description" content="UI Templating Framework">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="icon" href="../../img/AugLogo.png">
+
+    <link rel="stylesheet" href="../styles/ideal.css">
+    <link rel="stylesheet" href="Docs.css">
+  </head>
+
+  <!-- Content -->
+  <body>
+    <div class="notification-top">
+      <button onclick="document.querySelector('.notification-top').style.display = 'none'">x</button>
+      <span>This section is currently a work in progress!</span>
+    </div>
+
+    <aug-docs></aug-docs>
+
+    <aug-footer>
+      <span>
+        AugJS v0.6.1 &bull; Created By <a href="https://devpost.com/jnguyen23" style="color:white">John Nguyen</a> &bull; March 2017
+      </span>
+    </aug-footer>
+  </body>
+
+  <!-- Imported Components -->
+  <link rel="import" name="DocsComponent" href="DocsComponent.html">
+  <link rel="import" name="FooterComponent" href="../components/Footer.html">
+
+  <!-- Scripts -->
+  <script src="../scripts/augjs/aug.js"></script>
+
+  <script type="text/javascript">
+    let Docs = {
+      el: 'aug-docs',
+      opts: {
+        template: {
+          id: '#docs-template',
+          src: 'DocsComponent'
+        },
+        data: {
+          preserve: true
+        }
+      }
+    }
+
+    let Footer = {
+      el: 'aug-footer',
+      opts: {
+        template: {
+          id: '#footer-template',
+          src: 'FooterComponent'
+        }
+      }
+    }
+
+    var aug = new Aug()
+
+    aug.registerComponents(Docs, Footer)
+  </script>
+</html>

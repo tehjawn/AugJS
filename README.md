@@ -8,6 +8,8 @@
 
 AugJS is a simple, streamlined UI Templating framework that acts as a light-weight wrapper around the upcoming Web Component and Shadow DOM standards.
 
+AugJS is useful when used across multiple small, single-page applications that utilize the same modules and/or widgets which only require declarative, one-way data binding.
+
 It's features include:
 
 - Scoped CSS
