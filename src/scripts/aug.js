@@ -1,8 +1,79 @@
 // === Aug Class ===
+// Primary Aug lifecycle handler that manages the creation and manipulation
+// of Aug objects, or 'Augjects'
+
+class Aug {
+
+  constructor() {
+    this.augList = []
+  }
+
+  /**
+   * componentList - Returns all created Augject components thus far
+   *
+   * @return {Array<Augject>}  An array of all Augject components
+   */
+  get componentList() {
+    return this.augList
+  }
+
+  /**
+   * registerComponent - Registers a new Augject and pushes it to the augList
+   *
+   * @param  {String} el    Element selector to be used for Augject
+   * @param  {Object} opts  Options to be used for Augject
+   * @return {void}
+   */
+  registerComponent({ el, opts }) {
+    let augject = new Augject({ el, opts })
+    this.augList.push(augject)
+  }
+
+  /**
+   * registerComponents - Takes an array and runs registerComponent on all items
+   *
+   * @param  {Array<Object>} components  A list of 'x' amount of {el, opts} objects
+   * @return {void}
+   */
+  registerComponents(...components) {
+    components.forEach(component => {
+      this.registerComponent(component)
+    })
+  }
+
+  /**
+   * setAug - Manually set the options of a target Augject
+   *
+   * @param  {String} el    Element selector of target Augject component
+   * @param  {Object} opts  Options to be used to modify target Augject
+   * @return {void}
+   */
+  setAug({ el, opts }) {
+    for(var augItem of this.augList) {
+      if (augItem.augName == el)
+        augItem.setOpts({ el, opts })
+    }
+  }
+
+  /**
+   * component - Returns a component of a specified augName
+   *
+   * @param  {String} el  The element name / augName of a target Augject
+   * @return {Augject}    An Augject element whose augName matches 'el'
+   */
+  component(el) {
+    for(var augItem of this.augList) {
+      if (augItem.augName == el)
+        return augItem
+    }
+  }
+}
+
+// === Augject Class ===
 // Foundational object that is the start point of all Aug objects
 // Aug Objects are also known as "Augjects"
 
-class Aug {
+class Augject {
 
   /**
    * constructor - Augject Constructor; creates new Aug object
@@ -13,6 +84,7 @@ class Aug {
    */
 
   constructor({ el, opts } = {}) {
+    this.augName = el
     this.augs = this.findAugEl({ el })
 
     if (opts) this.setOpts({ opts })
@@ -28,7 +100,12 @@ class Aug {
     let template = this.findTemplate({ opts })
 
     for (var aug of this.augs) {
-      let shadow = aug.createShadowRoot({mode: 'open'})
+      let shadow = undefined
+
+      aug.shadowRoot
+        ? shadow = aug.shadowRoot
+        : shadow = aug.createShadowRoot({mode: 'open'})
+
       shadow.innerHTML = this.parseHandlebars(template, opts.data)
     }
   }
@@ -132,22 +209,25 @@ class Aug {
       let end = tem.indexOf('}}')
       let dataVar = tem.slice(begin+2, end).replace(/ /g,'')
 
-      if (data[dataVar]) {
-        // console.log(data[dataVar])
-        if (isFunction(data[dataVar])) {
-          dataVar = data[dataVar]()
+      if (data){
+        if (data[dataVar]) {
+          // console.log(data[dataVar])
+          if (isFunction(data[dataVar])) {
+            dataVar = data[dataVar]()
+          } else {
+            dataVar = data[dataVar]
+          }
         } else {
-          dataVar = data[dataVar]
+          let jsParse = eval(dataVar)
+          if (typeof jsParse == 'string' || typeof jsParse == 'number')
+            dataVar = jsParse
+          else
+            dataVar = ''
         }
       } else {
-        let jsParse = eval(dataVar)
-        if (typeof jsParse == 'string' || typeof jsParse == 'number')
-          dataVar = jsParse
-        else
-          dataVar = ''
+        console.log(`Warning: {{${dataVar}}} has no existing data variable!`)
+        dataVar = ''
       }
-
-      let dvl = dataVar.length
 
       tem =
         tem.slice(0, begin) + dataVar + tem.slice(end+2, tem.length)

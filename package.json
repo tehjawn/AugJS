@@ -7,7 +7,9 @@
   "author": "jn23 <tehjawn@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "echo 'Read AugJS documentation at www.github.com/tehjawn/AugJS'"
+    "py" : "python -m SimpleHTTPServer",
+    "py3" : "python -m http.server",
+    "docs": "echo 'Read AugJS documentation at www.github.com/tehjawn/AugJS'"
   },
   "devDependencies": {
     "uglify-js": "^2.8.15",

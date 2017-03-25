@@ -1,4 +1,4 @@
-<center><img src="img/AugLogo.png" width="80"/>
+<center><img src="img/AugLogo.png" width="100"/></center>
 
 # AugJS
 
@@ -20,11 +20,19 @@ View it in action [here](https://tehjawn.github.io/AugJS/src/)
 
 ---
 
-Latest changes:
+###Changelist:
+
+####3/22/2017
 
 - Moved SRC4 and SRC5 to /old
 
 - SRC6 (/src) rewritten from scratch based on legacy Shadow DOM (createShadowRoot and content instead of attachShadow and slot) with additional features such as one-way data-binding through a primitive version of handlebars
+
+####3/24/2017
+
+- Augject view replacing works!
+
+- Tutorials, Documentation and Examples Pages for v0.4.0 started
 
 ---
 

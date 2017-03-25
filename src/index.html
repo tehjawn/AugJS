@@ -1,70 +1,88 @@
 <!DOCTYPE html>
 <html>
-<!-- Meta -->
+  <!-- Meta -->
   <head>
     <title>AugJS</title>
     <link rel="stylesheet" href="styles/ideal.css">
   </head>
 
-<!-- Content -->
+  <!-- Content -->
   <body>
-    <aug-main></aug-main>
-    <aug-second>
-      <test>Hello</test>
-    </aug-second>
-    <aug-second>
-      <test>Bye</test>
-    </aug-second>
+    <aug-header>
+      <img src="../img/AugLogo.png" width=100 alt="">
+      <h1>AugJS</h1>
+      <h3>v0.4.0</h3>
+      <p>A Simple, Streamlined UI Templating Framework</p>
+    </aug-header>
+
+    <aug-content>
+      <tagline>
+        AugJS is a lightweight Web Component + Shadow DOM wrapper.
+        <br/>
+        <b>It helps you make UI Templates easily!</b>
+      </tagline>
+
+      <ft-1-img><img src="../../img/ft1.png" alt=""></ft-1-img>
+      <ft-1-title>Scoped Cascading Stylesheets</ft-1-title>
+      <ft-1-desc>Overlapping styles don't conflict with each other!</ft-1-desc>
+
+      <ft-2-img><img src="../../img/ft2.png" alt=""></ft-2-img>
+      <ft-2-title>Straightforward Templating</ft-2-title>
+      <ft-2-desc>Create structured templates with unidirectional data flow.</ft-2-desc>
+
+      <ft-3-img><img src="../../img/ft3.png" alt=""></ft-3-img>
+      <ft-3-title>Modularized, Pluggable Code</ft-3-title>
+      <ft-3-desc>Design modules that can be imported into any AugJS site.</ft-3-desc>
+    </aug-content>
+
+    <aug-footer>
+      <span>John Nguyen &bull; March 2017</span>
+    </aug-footer>
   </body>
 
   <!-- Imported Components -->
-  <link rel="import" name="HelloComponent" href="components/hello.html">
-  <link rel="import" name="NewComponent" href="components/new.html">
+  <link rel="import" name="HeaderComponent" href="components/Header/Header.html">
+  <link rel="import" name="ContentComponent" href="components/Content.html">
+  <link rel="import" name="FooterComponent" href="components/Footer.html">
 
-<!-- Scripts -->
+  <!-- Scripts -->
   <script src="scripts/aug.js"></script>
 
   <script type="text/javascript">
-  // Hello, AugJS!
+    // Hello, AugJS!
 
-    let x = 2, y = 3
-
-    let helloOpts = {
-      template: {
-        id: '#helloWorld',
-        src: 'HelloComponent'
-      },
-      data: {
-        text: "Hello, World!",
-        test: function() {
-          return `Greetings! ${x} + ${y} = ${x+y}`
+    let Header = {
+      el: 'aug-header',
+      opts: {
+        template: {
+          id: '#header-template',
+          src: 'HeaderComponent'
         }
       }
     }
 
-    let aug = new Aug({
-      el: 'aug-main'
-    })
-
-    aug.setOpts({ opts: helloOpts })
-
-    let newOpts = {
-      template: {
-        id: '#new',
-        src: 'NewComponent'
-      },
-      data: {
-        yay: "Super",
-        popup: function() {
-          return `alert('hello')`
+    let Content = {
+      el: 'aug-content',
+      opts: {
+        template: {
+          id: '#content-template',
+          src: 'ContentComponent'
         }
       }
     }
 
-    let second = new Aug({
-      el: 'aug-second',
-      opts: newOpts
-    })
+    let Footer = {
+      el: 'aug-footer',
+      opts: {
+        template: {
+          id: '#footer-template',
+          src: 'FooterComponent'
+        }
+      }
+    }
 
+    let aug = new Aug()
+
+    aug.registerComponents(Header, Content, Footer)
   </script>
 </html>

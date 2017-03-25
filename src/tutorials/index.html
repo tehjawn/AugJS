@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <!-- Meta -->
+  <head>
+    <title>AugJS</title>
+    <link rel="stylesheet" href="tutorial.css">
+  </head>
+
+  <!-- Content -->
+  <body>
+    <h1>Learn about:</h1>
+    <ul>
+      <li>
+        <a href="#AugJS" onclick="aug.component('aug-tutorial').setOpts(AugJSOpts)">AugJS</a>
+      </li>
+      <li>
+        <a href="#ES6" onclick="aug.component('aug-tutorial').setOpts(ES6Opts)">ES6</a>
+      </li>
+      <li>
+        <a href="#ShadowDom" onclick="aug.component('aug-tutorial').setOpts(ShadowDOMOpts)">Shadow DOM</a>
+      </li>
+    </ul>
+    <aug-tutorial></aug-tutorial>
+  </body>
+
+  <!-- Imported Components -->
+  <link rel="import" name="AugJSComponent" href="components/AugJS.html">
+  <link rel="import" name="ES6Component" href="components/ES6.html">
+  <link rel="import" name="ShadowDOMComponent" href="components/ShadowDOM.html">
+
+  <!-- Scripts -->
+  <script src="../scripts/aug.js"></script>
+
+  <script type="text/javascript">
+    let AugJSOpts = {
+      el: 'aug-tutorial',
+      opts: {
+        template: {
+          id: '#AugJS-template',
+          src: 'AugJSComponent'
+        }
+      }
+    }
+
+    let ES6Opts = {
+      el: 'aug-tutorial',
+      opts: {
+        template: {
+          id: '#ES6-template',
+          src: 'ES6Component'
+        }
+      }
+    }
+
+    let ShadowDOMOpts = {
+      el: 'aug-tutorial',
+      opts: {
+        template: {
+          id: '#ShadowDOM-template',
+          src: 'ShadowDOMComponent'
+        }
+      }
+    }
+
+    var aug = new Aug()
+
+    aug.registerComponent(AugJSOpts)
+  </script>
+</html>

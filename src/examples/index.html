@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<!-- Meta -->
+  <head>
+    <title>AugJS</title>
+    <link rel="stylesheet" href="styles/ideal.css">
+  </head>
+
+<!-- Content -->
+  <body>
+    <aug-main></aug-main>
+    <aug-second>
+      <test>Hello</test>
+    </aug-second>
+    <aug-second>
+      <test>Bye</test>
+    </aug-second>
+  </body>
+
+  <!-- Imported Components -->
+  <link rel="import" name="HelloComponent" href="components/Hello.html">
+  <link rel="import" name="NewComponent" href="components/New.html">
+
+<!-- Scripts -->
+  <script src="scripts/aug.js"></script>
+
+  <script type="text/javascript">
+  // Hello, AugJS!
+
+    let x = 2, y = 3
+
+    let helloOpts = {
+      template: {
+        id: '#helloWorld',
+        src: 'HelloComponent'
+      },
+      data: {
+        text: "Hello, World!",
+        test: function() {
+          return `Greetings! ${x} + ${y} = ${x+y}`
+        }
+      }
+    }
+
+    let aug = new Augject({
+      el: 'aug-main'
+    })
+
+    aug.setOpts({ opts: helloOpts })
+
+    let newOpts = {
+      template: {
+        id: '#new',
+        src: 'NewComponent'
+      },
+      data: {
+        yay: "Super",
+        popup: function() {
+          return `alert('hello')`
+        }
+      }
+    }
+
+    let second = new Augject({
+      el: 'aug-second',
+      opts: newOpts
+    })
+
+  </script>
+</html>

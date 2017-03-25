@@ -1,0 +1,34 @@
+<template id="header-template">
+  <style>
+    @import url("components/Header/Header.css");
+  </style>
+
+  <div class="header-container">
+    <content select="img"></content>
+    <content select="h1">
+      <h1>
+        Title
+      </h1>
+    </content>
+    <content select="h3">
+      Version
+    </content>
+    <content select="p">
+      <p>
+        Description
+      </p>
+    </content>
+    <a href="https://github.com/tehjawn/AugJS/">
+      <img class="github-icon" src="../../img/github.png" alt="Github">
+    </a>
+    <div id="started-btn" class="a-btn-ctn" onclick="window.open('scripts/aug.js')">
+      <span id="started-btn-text" class="a-btn">Download</span>
+    </div>
+    <br>
+    <a class="learn-more" href="./tutorials">View Tutorials</a>
+    <a class="learn-more" href="./docs">View Documentation</a>
+    <a class="learn-more" href="./examples">View Examples</a>
+  </div>
+</template>
+
+<script src="Header.js"></script>

@@ -1,0 +1,94 @@
+<template id="content-template">
+  <style>
+    .content-container {
+      font-family: 'Titillium Web Light', sans-serif;
+      padding: 48px 24px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .content-container::content tagline {
+      margin: 0 auto;
+    }
+
+    .ft-ctn {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .ft {
+      width: 33.33%;
+      text-align: center;
+    }
+    @media screen and (max-width: 480px) {
+      .ft {
+        width: 100%;
+      }
+    }
+
+    .ft-desc {}
+
+    .ft-img {}
+  </style>
+  <div class="content-container">
+    <div style="text-align: center">
+      <content select="tagline">Body Content</content>
+      <h1 id="feature-title">Features</h1>
+    </div>
+    <div class="ft-ctn">
+      <div class="ft">
+        <div class="ft-img">
+          <content select="ft-1-img"></content>
+        </div>
+        <div class="ft-desc">
+          <h3>
+            <content select="ft-1-title">
+              Feature 1 Title
+            </content>
+          </h3>
+          <p>
+            <content select="ft-1-desc">
+              Feature 1 Description
+            </content>
+          </p>
+        </div>
+      </div>
+      <div class="ft">
+        <div class="ft-img">
+          <content select="ft-2-img"></content>
+        </div>
+        <div class="ft-desc">
+          <h3>
+            <content select="ft-2-title">
+              Feature 2 Title
+            </content>
+          </h3>
+          <p>
+            <content select="ft-2-desc">
+              Feature 2 Description
+            </content>
+          </p>
+        </div>
+      </div>
+      <div class="ft">
+        <div class="ft-img">
+          <content select="ft-3-img"></content>
+        </div>
+        <div class="ft-desc">
+          <h3>
+            <content select="ft-3-title">
+              Feature 3 Title
+            </content>
+          </h3>
+          <p>
+            <content select="ft-3-desc">
+              Feature 3 Description
+            </content>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</template>
