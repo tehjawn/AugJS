@@ -1,5 +1,6 @@
 <template id="header-template">
   <style>
+    @import url("styles/ideal.css");
     @import url("components/Header/Header.css");
   </style>
 
@@ -21,13 +22,45 @@
     <a href="https://github.com/tehjawn/AugJS/">
       <img class="github-icon" src="../img/github.png" alt="Github">
     </a>
-    <div id="started-btn" class="a-btn-ctn" onclick="window.open('scripts/aug.js')">
-      <span id="started-btn-text" class="a-btn">Download</span>
+    <div id="started-btn" class="a-btn-ctn" onclick="window.open('scripts/augjs/aug.js')">
+      <span id="started-btn-text" class="a-btn">Get AugJS</span>
     </div>
     <br>
-    <a class="learn-more" href="./tutorials">View Tutorials</a>
+    {{
+      let listItems = [{
+        href: './tutorials',
+        text: 'View Tutorials',
+        class: 'learn-more',
+        title: 'Tutorials involving AugJS'
+      },{
+        href: './docs',
+        text: 'View Documentation',
+        class:'learn-more disabled',
+        title: 'Docs Coming Soon!'
+      },{
+        href: './examples',
+        text: 'View Examples',
+        class:'learn-more disabled',
+        title: 'Examples Coming Soon!'
+      }]
+
+      let output = ""
+
+      listItems.forEach(function(item) {
+        output += `<a class="${item.class}" title="${item.title}" href="${item.href}">haha${item.text}</a>`
+      })
+
+      return output
+    }}
+
+    <!-- <a class="learn-more" href="./tutorials">View Tutorials</a>
     <a class="learn-more" href="./docs">View Documentation</a>
-    <a class="learn-more" href="./examples">View Examples</a>
+    <a class="learn-more" href="./examples">View Examples</a> -->
+
+    {{
+      if (2 < 3) console.log('Welcome to AugJS!')
+      else console.log('Hello!')
+    }}
   </div>
 </template>
 

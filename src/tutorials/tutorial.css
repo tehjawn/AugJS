@@ -1,0 +1,43 @@
+.tutorial-header {
+  padding: 16px;
+  background: -webkit-linear-gradient(#272822 30%, #3F4FAC 90%, #15A0A5);
+  background: linear-gradient(#272822 30%, #3F4FAC 90%, #15A0A5);
+  color: white;
+}
+
+ul.tutorial-options {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline;
+}
+
+ul.tutorial-options li {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+
+ul.tutorial-options li a {
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #acf;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+ul.tutorial-options li a:hover {
+  background-color: rgba(0,0,0,.2);
+  color: #acf;
+}
+
+@media screen and (max-width: 768px) {
+  ul.tutorial-options li a {
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+.tutorial-header {
+  text-align: center;
+}

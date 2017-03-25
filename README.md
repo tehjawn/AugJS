@@ -22,17 +22,24 @@ View it in action [here](https://tehjawn.github.io/AugJS/src/)
 
 ### Changelist
 
-#### 3/22/2017
 
-- Moved SRC4 and SRC5 to /old
+#### 3/24/2017
 
-- SRC6 (/src) rewritten from scratch based on legacy Shadow DOM (createShadowRoot and content instead of attachShadow and slot) with additional features such as one-way data-binding through a primitive version of handlebars
+- v0.4.0 --> v0.6.1 (to match with SRC6 version and some added tweaks)
+
+- Tutorials, Documentation and Examples Pages for v0.6.1 Finished
 
 #### 3/24/2017
 
 - Augject view replacing works!
 
-- Tutorials, Documentation and Examples Pages for v0.4.0 started
+- Tutorials, Documentation and Examples Pages for v0.4.0 Started
+
+#### 3/22/2017
+
+- Moved SRC4 and SRC5 to /old
+
+- SRC6 (/src) rewritten from scratch based on legacy Shadow DOM (createShadowRoot and content instead of attachShadow and slot) with additional features such as one-way data-binding through a primitive version of handlebars
 
 ---
 

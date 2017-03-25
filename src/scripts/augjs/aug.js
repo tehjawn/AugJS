@@ -77,7 +77,7 @@ class Aug {
 class Augject {
 
   /**
-   * constructor - Augject Constructor; creates new Aug object
+   * constructor - Augject Constructor - creates new Aug object
    *
    * @param  {String} el        Element selector of root Aug element
    * @param  {Obj}  opts        Contains all options and properties of element
@@ -184,9 +184,9 @@ class Augject {
 
     let { id, src } = opts.template
 
-    let component = document.querySelector(`link[rel=import][name=${src}]`);
+    let component = document.querySelector(`link[rel=import][name=${src}]`)
 
-    let importedTemplate = component.import.querySelector(id);
+    let importedTemplate = component.import.querySelector(id)
 
     return importedTemplate
       ? importedTemplate
@@ -208,26 +208,31 @@ class Augject {
 
       let begin = tem.indexOf('{{')
       let end = tem.indexOf('}}')
-      let dataVar = tem.slice(begin+2, end).replace(/ /g,'')
+      let dataVar = tem.slice(begin+2, end)
 
       if (data){
-        if (data[dataVar]) {
-          // console.log(data[dataVar])
+        if (data[dataVar.replace(/ /g,'')]) {
+          dataVar = dataVar.replace(/ /g,'')
           if (isFunction(data[dataVar])) {
             dataVar = data[dataVar]()
           } else {
             dataVar = data[dataVar]
           }
         } else {
-          let jsParse = eval(dataVar)
+          let jsParse = eval(arrowSwap(dataVar))
           if (typeof jsParse == 'string' || typeof jsParse == 'number')
             dataVar = jsParse
           else
             dataVar = ''
         }
       } else {
-        console.log(`Warning: {{${dataVar}}} has no existing data variable!`)
-        dataVar = ''
+        // console.log(`Warning: {{${dataVar}}} has no existing data variable!`)
+        dataVar = arrowSwap(dataVar)
+        let jsParse = eval(`(function(){${dataVar}}())`)
+        if (typeof jsParse == 'string' || typeof jsParse == 'number')
+          dataVar = jsParse
+        else
+          dataVar = ''
       }
 
       tem =
@@ -242,6 +247,11 @@ class Augject {
 
 // Helper function that checks if a value is of type 'function'
 function isFunction(functionToCheck) {
-  var getType = {};
-  return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+  var getType = {}
+  return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]'
+}
+
+// Helper function to santize &lt; and &gt; into their respective arrow symbols
+function arrowSwap(string) {
+  return string.replace(/&lt;/g, '<').replace(/&gt;/g, '>') 
 }

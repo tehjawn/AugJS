@@ -2,7 +2,7 @@
 <html>
   <!-- Meta -->
   <head>
-    <title>AugJS</title>
+    <title>AugJS - Tutorials</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,32 +10,65 @@
     <meta name="description" content="UI Templating Framework">
     <meta name="theme-color" content="#ffffff">
 
+    <link rel="icon" href="../../img/AugLogo.png">
+
+    <link rel="stylesheet" href="../styles/ideal.css">
     <link rel="stylesheet" href="tutorial.css">
   </head>
 
   <!-- Content -->
   <body>
-    <h1>Learn about:</h1>
-    <ul>
-      <li>
-        <a href="#AugJS" onclick="aug.component('aug-tutorial').setOpts(AugJSOpts)">AugJS</a>
-      </li>
-      <li>
-        <a href="#ES6" onclick="aug.component('aug-tutorial').setOpts(ES6Opts)">ES6</a>
-      </li>
-      <li>
-        <a href="#ShadowDom" onclick="aug.component('aug-tutorial').setOpts(ShadowDOMOpts)">Shadow DOM</a>
-      </li>
-    </ul>
-    <aug-tutorial></aug-tutorial>
-    <aug-tutorial></aug-tutorial>
-    <aug-tutorial></aug-tutorial>
+    <div class="notification-top">
+      <button onclick="document.querySelector('.notification-top').style.display = 'none'">x</button>
+      <span>This section is currently a work in progress!</span>
+    </div>
+
+    <div class="tutorial-header">
+      <div class="ctn">
+        <h1>Learn about:</h1>
+
+        <ul class="tutorial-options">
+          <li>
+            <a href="#AugJS" onclick="aug.component('aug-tutorial').setOpts(AugJSOpts)">AugJS</a>
+          </li>
+          <li>
+            <a href="#ES6" class="disabled" onclick="aug.component('aug-tutorial').setOpts(ES6Opts)">ES6</a>
+          </li>
+          <li>
+            <a href="#ShadowDom" class="disabled" onclick="aug.component('aug-tutorial').setOpts(ShadowDOMOpts)">Shadow DOM</a>
+          </li>
+          <li>
+            <a href="#Lit" class="disabled" onclick="aug.component('aug-tutorial').setOpts(LitOpts)">Lit Custom Card</a>
+          </li>
+          <li>
+            <br>
+            <br>
+            <a href="../">
+              <small>&lt;&lt; Back to AugJS Landing Page</small>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tutorial-content">
+      <div class="ctn">
+        <aug-tutorial></aug-tutorial>
+      </div>
+    </div>
+    <aug-footer>
+      <span>
+        AugJS v0.6.1 &bull; Created By <a href="https://devpost.com/jnguyen23" style="color:white">John Nguyen</a> &bull; March 2017
+      </span>
+    </aug-footer>
   </body>
 
   <!-- Imported Components -->
   <link rel="import" name="AugJSComponent" href="components/AugJS.html">
   <link rel="import" name="ES6Component" href="components/ES6.html">
   <link rel="import" name="ShadowDOMComponent" href="components/ShadowDOM.html">
+  <link rel="import" name="LitComponent" href="components/Lit.html">
+  <link rel="import" name="FooterComponent" href="../components/Footer.html">
 
   <!-- Scripts -->
   <script src="../scripts/augjs/aug.js"></script>
@@ -71,8 +104,28 @@
       }
     }
 
+    let LitOpts = {
+      el: 'aug-tutorial',
+      opts: {
+        template: {
+          id: '#Lit-template',
+          src: 'LitComponent'
+        }
+      }
+    }
+
+    let Footer = {
+      el: 'aug-footer',
+      opts: {
+        template: {
+          id: '#footer-template',
+          src: 'FooterComponent'
+        }
+      }
+    }
+
     var aug = new Aug()
 
-    aug.registerComponent(AugJSOpts)
+    aug.registerComponents(AugJSOpts, Footer)
   </script>
 </html>

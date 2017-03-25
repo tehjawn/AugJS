@@ -1,6 +1,5 @@
 .header-container {
   font-family: 'Titillium Web Light', sans-serif;
-  background: -webkit-linear-gradient(#272822 30%, #3F4FCC 90%, #35C0C5);
   background: -webkit-linear-gradient(#272822 30%, #3F4FAC 90%, #15A0A5);
   background: linear-gradient(#272822 30%, #3F4FAC 90%, #15A0A5);
   color: white;
@@ -25,7 +24,6 @@
   left: 50%;
   -webkit-transform: translate(-50%);
           transform: translate(-50%);
-  min-width: 360px;
   max-width: 360px;
   padding: 8px 24px;
   border-radius: 4px;
@@ -67,6 +65,13 @@
 .learn-more:hover {
   background-color: rgba(0,0,0,.2);
   color: #acf;
+}
+
+@media screen and (max-width: 768px) {
+  .learn-more {
+    margin: 0 auto;
+    display: block;
+  }
 }
 
 .github-icon {
