@@ -64,6 +64,8 @@
     let x = 2,
       y = 3
 
+    let stuffs = [52, 6, -3, 38, 100, 52, 10, 52, 6, -3, 38, 100, 52, 10]
+
     let helloOpts = {
       template: {
         id: '#helloWorld',
@@ -73,6 +75,13 @@
         text: "Hello, World!",
         test: function () {
           return `Greetings! ${x} + ${y} = ${x + y}`
+        },
+        lottaStuff: function() {
+          let newStr = 0
+          stuffs.forEach(stuff => {
+            newStr += stuff
+          })
+          return newStr
         }
       }
     }

@@ -274,7 +274,11 @@ class Augject {
               dataVar = data[dataVar]
             }
           } else {
-            let jsParse = eval(`(function(){${dataVar}}())`)
+            let jsParse = ''
+            dataVar.includes('return')
+               ? jsParse = eval(`(function(){${dataVar}}())`)
+               : jsParse = eval(dataVar)
+               
             if (typeof jsParse == 'string' || typeof jsParse == 'number')
               dataVar = jsParse
             else
