@@ -9,6 +9,10 @@ html, body {
           animation: fadein 1s;
 }
 
+.pad-bot {
+  padding-bottom: 40px !important;
+}
+
 @keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }

@@ -117,20 +117,20 @@
     // Ghetto AugRouter
     if (window.location.hash) {
       console.log(window.location.hash)
-      switch (window.location.hash) {
-        case '#!/AugJS':
+      switch (window.location.hash.toLowerCase()) {
+        case '#!/augjs':
           aug.component('aug-tutorial').setOpts(AugJSOpts)
           break
 
-        case '#!/ES6':
+        case '#!/es6':
           aug.component('aug-tutorial').setOpts(ES6Opts)
           break
 
-        case '#!/ShadowDom':
+        case '#!/shadowdom':
           aug.component('aug-tutorial').setOpts(ShadowDOMOpts)
           break
 
-        case '#!/Lit':
+        case '#!/lit':
           aug.component('aug-tutorial').setOpts(LitOpts)
           break
       }
