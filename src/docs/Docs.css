@@ -51,11 +51,18 @@ html, body {
   padding: 16px;
 }
 
-.doc-content .full-code {
+.doc-code {
+  width: 100%;
+}
+
+.full-code {
+  background-color: blue;
   padding: 16px;
   overflow-x: scroll;
-  width: 702px;
-  max-width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+
 }
 
 .doc-docs pre {

@@ -24,10 +24,7 @@ class Aug {
    * @param  {Object} opts  Options to be used for Augject
    * @return {void}
    */
-  registerComponent({
-    el,
-    opts
-  }) {
+  registerComponent({ el, opts }) {
     let augject = new Augject({
       el,
       opts
@@ -54,10 +51,7 @@ class Aug {
    * @param  {Object} opts  Options to be used to modify target Augject
    * @return {void}
    */
-  setAug({
-    el,
-    opts
-  }) {
+  setAug({ el, opts }) {
     for (var augItem of this.augList) {
       if (augItem.augName == el)
         augItem.setOpts({
@@ -96,18 +90,13 @@ class Augject {
    * @return {void}             No return
    */
 
-  constructor({
-    el,
-    opts
-  } = {}) {
+  constructor({ el, opts } = {}) {
     this.augName = el
     this.augs = this.findAugEl({
       el
     })
 
-    if (opts) this.setOpts({
-      opts
-    })
+    if (opts) this.setOpts({ opts })
   }
 
   /**
@@ -116,9 +105,7 @@ class Augject {
    * @param  {Obj}  opts     Contains all options and properties of element
    * @return {type}          description
    */
-  setOpts({
-    opts
-  }) {
+  setOpts({ opts }) {
     let template = this.findTemplate({
       opts
     })
@@ -149,14 +136,10 @@ class Augject {
    * @return {HTMLObj}
    */
 
-  findAugEl({
-    el
-  } = {}) {
+  findAugEl({ el } = {}) {
     // console.log(`Searching for ${el}`)
 
-    let augEl = this.select({
-      el
-    })
+    let augEl = this.select({ el })
 
     return augEl ?
       augEl :
@@ -172,12 +155,8 @@ class Augject {
    * @return {HTMLObj} foundTemplate  The template element that was found
    */
 
-  findTemplate({
-    opts
-  } = {}) {
-    let {
-      id
-    } = opts.template
+  findTemplate({ opts } = {}) {
+    let { id } = opts.template
 
     // console.log(`Searching for template with ID ${id}`)
 
@@ -198,11 +177,7 @@ class Augject {
    * @param  {Obj}    opts        Opt. object with search options
    * @return {HTMLObj} selected   The element that was found (if any)
    */
-  select({
-    el,
-    opts
-  } = {}) {
-
+  select({ el, opts } = {}) {
     if (el) {
       return document.querySelectorAll(el)
     }
@@ -223,14 +198,8 @@ class Augject {
    * @return {HTMLOBj} importedTemplate
    */
 
-  importSelectTemplate({
-    opts
-  } = {}) {
-
-    let {
-      id,
-      src
-    } = opts.template
+  importSelectTemplate({ opts } = {}) {
+    let { id, src } = opts.template
 
     let component = document.querySelector(`link[rel=import][name=${src}]`)
 
@@ -278,7 +247,7 @@ class Augject {
             dataVar.includes('return')
                ? jsParse = eval(`(function(){${dataVar}}())`)
                : jsParse = eval(dataVar)
-               
+
             if (typeof jsParse == 'string' || typeof jsParse == 'number')
               dataVar = jsParse
             else

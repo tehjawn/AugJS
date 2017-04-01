@@ -160,323 +160,325 @@
 
     <!-- DOC_CODE -->
 
-    <div class="doc-code doc-content">
+    <div class="doc-code">
+      <div class="doc-content">
       <strong>
         <u>aug.js</u>
       </strong>
+      </div>
       <pre class="full-code" style="background:#042029;color:#839496"><span style="color:#586e75">// === Aug Class ===</span>
-      <span style="color:#586e75">// Primary Aug lifecycle handler that manages the creation and manipulation</span>
-      <span style="color:#586e75">// of Aug objects, or 'Augjects'</span>
+<span style="color:#586e75">// Primary Aug lifecycle handler that manages the creation and manipulation</span>
+<span style="color:#586e75">// of Aug objects, or 'Augjects'</span>
 
-      <span style="color:#a57800">class</span> <span style="color:#268bd2">Aug</span> {
+<span style="color:#a57800">class</span> <span style="color:#268bd2">Aug</span> {
 
-        <span style="color:#268bd2">constructor</span>() {
-          <span style="color:#268bd2">this</span><span style="color:#859900">.</span>augList <span style="color:#859900">=</span> []
-        }
+  <span style="color:#268bd2">constructor</span>() {
+    <span style="color:#268bd2">this</span><span style="color:#859900">.</span>augList <span style="color:#859900">=</span> []
+  }
 
-        <span style="color:#586e75">/**
-         * componentList - Returns all created Augject components thus far
-         *
-         * <span style="color:#859900">@return</span> {Array&lt;Augject>}  An array of all Augject components
-         */</span>
-        get <span style="color:#268bd2">componentList</span>() {
-          <span style="color:#859900">return</span> <span style="color:#268bd2">this</span><span style="color:#859900">.</span>augList
-        }
+  <span style="color:#586e75">/**
+   * componentList - Returns all created Augject components thus far
+   *
+   * <span style="color:#859900">@return</span> {Array&lt;Augject>}  An array of all Augject components
+   */</span>
+  get <span style="color:#268bd2">componentList</span>() {
+    <span style="color:#859900">return</span> <span style="color:#268bd2">this</span><span style="color:#859900">.</span>augList
+  }
 
-        <span style="color:#586e75">/**
-         * registerComponent - Registers a new Augject and pushes it to the augList
-         *
-         * <span style="color:#536871">@param</span>  {String} el    Element selector to be used for Augject
-         * <span style="color:#536871">@param</span>  {Object} opts  Options to be used for Augject
-         * <span style="color:#859900">@return</span> {void}
-         */</span>
-        registerComponent({
+  <span style="color:#586e75">/**
+   * registerComponent - Registers a new Augject and pushes it to the augList
+   *
+   * <span style="color:#536871">@param</span>  {String} el    Element selector to be used for Augject
+   * <span style="color:#536871">@param</span>  {Object} opts  Options to be used for Augject
+   * <span style="color:#859900">@return</span> {void}
+   */</span>
+  registerComponent({
+    el,
+    opts
+  }) {
+    let augject <span style="color:#859900">=</span> <span style="color:#859900">new</span> <span style="color:#738a05">Augject</span>({
+      el,
+      opts
+    })
+    <span style="color:#268bd2">this</span><span style="color:#859900">.</span>augList<span style="color:#859900">.</span>push(augject)
+  }
+
+  <span style="color:#586e75">/**
+   * registerComponents - Takes an array and runs registerComponent on all items
+   *
+   * <span style="color:#536871">@param</span>  {Array&lt;Object>} components  A list of 'x' amount of {el, opts} objects
+   * <span style="color:#859900">@return</span> {void}
+   */</span>
+  <span style="color:#268bd2">registerComponents</span>(...components) {
+    components<span style="color:#859900">.</span>forEach(component <span style="color:#859900">=</span><span style="color:#859900">></span> {
+      <span style="color:#268bd2">this</span><span style="color:#859900">.</span>registerComponent(component)
+    })
+  }
+
+  <span style="color:#586e75">/**
+   * setAug - Manually set the options of a target Augject
+   *
+   * <span style="color:#536871">@param</span>  {String} el    Element selector of target Augject component
+   * <span style="color:#536871">@param</span>  {Object} opts  Options to be used to modify target Augject
+   * <span style="color:#859900">@return</span> {void}
+   */</span>
+  setAug({
+    el,
+    opts
+  }) {
+    <span style="color:#859900">for</span> (var augItem of <span style="color:#268bd2">this</span><span style="color:#859900">.</span>augList) {
+      <span style="color:#859900">if</span> (augItem<span style="color:#859900">.</span>augName <span style="color:#859900">==</span> el)
+        augItem<span style="color:#859900">.</span>setOpts({
           el,
           opts
-        }) {
-          let augject <span style="color:#859900">=</span> <span style="color:#859900">new</span> <span style="color:#738a05">Augject</span>({
-            el,
-            opts
-          })
-          <span style="color:#268bd2">this</span><span style="color:#859900">.</span>augList<span style="color:#859900">.</span>push(augject)
-        }
+        })
+    }
+  }
 
-        <span style="color:#586e75">/**
-         * registerComponents - Takes an array and runs registerComponent on all items
-         *
-         * <span style="color:#536871">@param</span>  {Array&lt;Object>} components  A list of 'x' amount of {el, opts} objects
-         * <span style="color:#859900">@return</span> {void}
-         */</span>
-        <span style="color:#268bd2">registerComponents</span>(...components) {
-          components<span style="color:#859900">.</span>forEach(component <span style="color:#859900">=</span><span style="color:#859900">></span> {
-            <span style="color:#268bd2">this</span><span style="color:#859900">.</span>registerComponent(component)
-          })
-        }
+  <span style="color:#586e75">/**
+   * component - Returns a component of a specified augName
+   *
+   * <span style="color:#536871">@param</span>  {String} el  The element name / augName of a target Augject
+   * <span style="color:#859900">@return</span> {Augject}    An Augject element whose augName matches 'el'
+   */</span>
+  <span style="color:#268bd2">component</span>(el) {
+    <span style="color:#859900">for</span> (var augItem of <span style="color:#268bd2">this</span><span style="color:#859900">.</span>augList) {
+      <span style="color:#859900">if</span> (augItem<span style="color:#859900">.</span>augName <span style="color:#859900">==</span> el)
+        <span style="color:#859900">return</span> augItem
+    }
+  }
+}
 
-        <span style="color:#586e75">/**
-         * setAug - Manually set the options of a target Augject
-         *
-         * <span style="color:#536871">@param</span>  {String} el    Element selector of target Augject component
-         * <span style="color:#536871">@param</span>  {Object} opts  Options to be used to modify target Augject
-         * <span style="color:#859900">@return</span> {void}
-         */</span>
-        setAug({
-          el,
-          opts
-        }) {
-          <span style="color:#859900">for</span> (var augItem of <span style="color:#268bd2">this</span><span style="color:#859900">.</span>augList) {
-            <span style="color:#859900">if</span> (augItem<span style="color:#859900">.</span>augName <span style="color:#859900">==</span> el)
-              augItem<span style="color:#859900">.</span>setOpts({
-                el,
-                opts
-              })
-          }
-        }
 
-        <span style="color:#586e75">/**
-         * component - Returns a component of a specified augName
-         *
-         * <span style="color:#536871">@param</span>  {String} el  The element name / augName of a target Augject
-         * <span style="color:#859900">@return</span> {Augject}    An Augject element whose augName matches 'el'
-         */</span>
-        <span style="color:#268bd2">component</span>(el) {
-          <span style="color:#859900">for</span> (var augItem of <span style="color:#268bd2">this</span><span style="color:#859900">.</span>augList) {
-            <span style="color:#859900">if</span> (augItem<span style="color:#859900">.</span>augName <span style="color:#859900">==</span> el)
-              <span style="color:#859900">return</span> augItem
-          }
-        }
+<span style="color:#586e75">// === Augject Class ===</span>
+<span style="color:#586e75">// Foundational object that is the start point of all Aug objects</span>
+<span style="color:#586e75">// Aug Objects are also known as "Augjects"</span>
+
+<span style="color:#a57800">class</span> <span style="color:#268bd2">Augject</span> {
+
+  <span style="color:#586e75">/**
+   * constructor - Augject Constructor - creates new Aug object
+   *
+   * <span style="color:#536871">@param</span>  {String} el        Element selector of root Aug element
+   * <span style="color:#536871">@param</span>  {Obj}  opts        Contains all options and properties of element
+   * <span style="color:#859900">@return</span> {void}             No return
+   */</span>
+
+  constructor({
+    el,
+    opts
+  } <span style="color:#859900">=</span> {}) {
+    <span style="color:#268bd2">this</span><span style="color:#859900">.</span>augName <span style="color:#859900">=</span> el
+    <span style="color:#268bd2">this</span><span style="color:#859900">.</span>augs <span style="color:#859900">=</span> <span style="color:#268bd2">this</span><span style="color:#859900">.</span>findAugEl({
+      el
+    })
+
+    <span style="color:#859900">if</span> (opts) <span style="color:#268bd2">this</span><span style="color:#859900">.</span>setOpts({
+      opts
+    })
+  }
+
+  <span style="color:#586e75">/**
+   * setOpts - Sets the options of the Augject
+   *
+   * <span style="color:#536871">@param</span>  {Obj}  opts     Contains all options and properties of element
+   * <span style="color:#859900">@return</span> {type}          description
+   */</span>
+  setOpts({
+    opts
+  }) {
+    let template <span style="color:#859900">=</span> <span style="color:#268bd2">this</span><span style="color:#859900">.</span>findTemplate({
+      opts
+    })
+
+    <span style="color:#859900">for</span> (var aug of <span style="color:#268bd2">this</span><span style="color:#859900">.</span>augs) {
+      let shadow <span style="color:#859900">=</span> undefined
+
+      aug<span style="color:#859900">.</span>shadowRoot <span style="color:#859900">?</span>
+        shadow <span style="color:#859900">=</span> aug<span style="color:#859900">.</span>shadowRoot <span style="color:#859900">:</span>
+        shadow <span style="color:#859900">=</span> aug<span style="color:#859900">.</span>createShadowRoot({
+          mode<span style="color:#859900">:</span> <span style="color:#269186"><span style="color:#c60000">'</span>open<span style="color:#c60000">'</span></span>
+        })
+
+      <span style="color:#859900">if</span> (<span style="color:#859900">!</span>opts<span style="color:#859900">.</span>preserve)
+        shadow<span style="color:#859900">.</span>innerHTML <span style="color:#859900">=</span> <span style="color:#268bd2">this</span><span style="color:#859900">.</span>parseHandlebars(template, opts<span style="color:#859900">.</span>data)
+      <span style="color:#859900">else</span>
+        shadow<span style="color:#859900">.</span>innerHTML <span style="color:#859900">=</span> template<span style="color:#859900">.</span>innerHTML
+    }
+  }
+
+
+  <span style="color:#586e75">// --- AugJS Public Helper Functions ---</span>
+
+  <span style="color:#586e75">/**
+   * findAugEl - Find element with specified selector tag
+   *
+   * <span style="color:#536871">@param</span>  {String} el      Element selector to search for
+   * <span style="color:#859900">@return</span> {HTMLObj}
+   */</span>
+
+  findAugEl({
+    el
+  } <span style="color:#859900">=</span> {}) {
+    <span style="color:#586e75">// console.log(`Searching for ${el}`)</span>
+
+    let augEl <span style="color:#859900">=</span> <span style="color:#268bd2">this</span><span style="color:#859900">.</span>select({
+      el
+    })
+
+    <span style="color:#859900">return</span> augEl <span style="color:#859900">?</span>
+      augEl <span style="color:#859900">:</span>
+      `err<span style="color:#859900">:</span> <span style="color:#738a05">No</span> element found with <span style="color:#cb4b16">ID</span> ${el}`
+  }
+
+
+  <span style="color:#586e75">/**
+   * findTemplate - Find template by ID
+   *
+   * <span style="color:#536871">@param</span>  {String} template        Template ID to search for
+   * <span style="color:#536871">@param</span>  {String} opts       Component name to search in
+   * <span style="color:#859900">@return</span> {HTMLObj} foundTemplate  The template element that was found
+   */</span>
+
+  findTemplate({
+    opts
+  } <span style="color:#859900">=</span> {}) {
+    let {
+      id
+    } <span style="color:#859900">=</span> opts<span style="color:#859900">.</span>template
+
+    <span style="color:#586e75">// console.log(`Searching for template with ID ${id}`)</span>
+
+    let template <span style="color:#859900">=</span> <span style="color:#268bd2">this</span><span style="color:#859900">.</span>select({
+      opts
+    })
+
+    <span style="color:#859900">return</span> template <span style="color:#859900">?</span>
+      template <span style="color:#859900">:</span>
+      `err<span style="color:#859900">:</span> <span style="color:#738a05">No</span> template with <span style="color:#cb4b16">ID</span> ${id} found<span style="color:#859900">.</span>`
+  }
+
+
+  <span style="color:#586e75">/**
+   * select - Finds element with {el} selector
+   *
+   * <span style="color:#536871">@param</span>  {String} el          Target element selector to search for
+   * <span style="color:#536871">@param</span>  {Obj}    opts        Opt. object with search options
+   * <span style="color:#859900">@return</span> {HTMLObj} selected   The element that was found (if any)
+   */</span>
+  select({
+    el,
+    opts
+  } <span style="color:#859900">=</span> {}) {
+
+    <span style="color:#859900">if</span> (el) {
+      <span style="color:#859900">return</span> document<span style="color:#859900">.</span>querySelectorAll(el)
+    }
+
+    <span style="color:#859900">if</span> (opts) {
+      <span style="color:#859900">return</span> <span style="color:#268bd2">this</span><span style="color:#859900">.</span>importSelectTemplate({
+        opts
+      })
+    }
+  }
+
+
+  <span style="color:#586e75">/**
+   * importSelectTemplate - Finds element within import with {el} selector
+   *
+   * <span style="color:#536871">@param</span>  {type}    template           description
+   * <span style="color:#536871">@param</span>  {type}    opts               Obj with import name
+   * <span style="color:#859900">@return</span> {HTMLOBj} importedTemplate
+   */</span>
+
+  importSelectTemplate({
+    opts
+  } <span style="color:#859900">=</span> {}) {
+
+    let {
+      id,
+      src
+    } <span style="color:#859900">=</span> opts<span style="color:#859900">.</span>template
+
+    let component <span style="color:#859900">=</span> document<span style="color:#859900">.</span>querySelector(`link[rel<span style="color:#859900">=</span>import][name<span style="color:#859900">=</span>${src}]`)
+
+    let importedTemplate <span style="color:#859900">=</span> component<span style="color:#859900">.</span>import<span style="color:#859900">.</span>querySelector(id)
+
+    <span style="color:#859900">return</span> importedTemplate <span style="color:#859900">?</span>
+      importedTemplate <span style="color:#859900">:</span>
+      `err<span style="color:#859900">:</span> <span style="color:#738a05">No</span> template with <span style="color:#cb4b16">ID</span> ${opts<span style="color:#859900">.</span>template} found<span style="color:#859900">.</span>`
+  }
+
+
+  <span style="color:#586e75">/**
+   * parseHandlebars - Takes in an HTML template and parses the '{{}}'s
+   *
+   * <span style="color:#536871">@param</span>  {type} template  description
+   * <span style="color:#536871">@param</span>  {type} data      description
+   * <span style="color:#859900">@return</span> {type}           description
+   */</span>
+  <span style="color:#268bd2">parseHandlebars</span>(template, data) {
+    let tem <span style="color:#859900">=</span> template<span style="color:#859900">.</span>innerHTML
+    let preserve <span style="color:#859900">=</span> <span style="color:#b58900">false</span>
+    <span style="color:#859900">if</span> (data) {
+      <span style="color:#859900">if</span> (data<span style="color:#859900">.</span>hasOwnProperty(<span style="color:#269186"><span style="color:#c60000">'</span>preserve<span style="color:#c60000">'</span></span>)) {
+        <span style="color:#859900">if</span> (data<span style="color:#859900">.</span>preserve <span style="color:#859900">==</span> <span style="color:#b58900">true</span>)
+          preserve <span style="color:#859900">=</span> <span style="color:#b58900">true</span>
       }
+    }
+    <span style="color:#859900">if</span> (<span style="color:#859900">!</span>preserve) {
+      <span style="color:#859900">while</span> (tem<span style="color:#859900">.</span>includes(<span style="color:#269186"><span style="color:#c60000">'</span>{{<span style="color:#c60000">'</span></span>) <span style="color:#859900">&amp;&amp;</span> tem<span style="color:#859900">.</span>includes(<span style="color:#269186"><span style="color:#c60000">'</span>}}<span style="color:#c60000">'</span></span>)) {
 
+        let begin <span style="color:#859900">=</span> tem<span style="color:#859900">.</span>indexOf(<span style="color:#269186"><span style="color:#c60000">'</span>{{<span style="color:#c60000">'</span></span>)
+        let end <span style="color:#859900">=</span> tem<span style="color:#859900">.</span>indexOf(<span style="color:#269186"><span style="color:#c60000">'</span>}}<span style="color:#c60000">'</span></span>)
+        let dataVar <span style="color:#859900">=</span> tem<span style="color:#859900">.</span>slice(begin <span style="color:#859900">+</span> <span style="color:#d33682">2</span>, end)
 
-      <span style="color:#586e75">// === Augject Class ===</span>
-      <span style="color:#586e75">// Foundational object that is the start point of all Aug objects</span>
-      <span style="color:#586e75">// Aug Objects are also known as "Augjects"</span>
-
-      <span style="color:#a57800">class</span> <span style="color:#268bd2">Augject</span> {
-
-        <span style="color:#586e75">/**
-         * constructor - Augject Constructor - creates new Aug object
-         *
-         * <span style="color:#536871">@param</span>  {String} el        Element selector of root Aug element
-         * <span style="color:#536871">@param</span>  {Obj}  opts        Contains all options and properties of element
-         * <span style="color:#859900">@return</span> {void}             No return
-         */</span>
-
-        constructor({
-          el,
-          opts
-        } <span style="color:#859900">=</span> {}) {
-          <span style="color:#268bd2">this</span><span style="color:#859900">.</span>augName <span style="color:#859900">=</span> el
-          <span style="color:#268bd2">this</span><span style="color:#859900">.</span>augs <span style="color:#859900">=</span> <span style="color:#268bd2">this</span><span style="color:#859900">.</span>findAugEl({
-            el
-          })
-
-          <span style="color:#859900">if</span> (opts) <span style="color:#268bd2">this</span><span style="color:#859900">.</span>setOpts({
-            opts
-          })
-        }
-
-        <span style="color:#586e75">/**
-         * setOpts - Sets the options of the Augject
-         *
-         * <span style="color:#536871">@param</span>  {Obj}  opts     Contains all options and properties of element
-         * <span style="color:#859900">@return</span> {type}          description
-         */</span>
-        setOpts({
-          opts
-        }) {
-          let template <span style="color:#859900">=</span> <span style="color:#268bd2">this</span><span style="color:#859900">.</span>findTemplate({
-            opts
-          })
-
-          <span style="color:#859900">for</span> (var aug of <span style="color:#268bd2">this</span><span style="color:#859900">.</span>augs) {
-            let shadow <span style="color:#859900">=</span> undefined
-
-            aug<span style="color:#859900">.</span>shadowRoot <span style="color:#859900">?</span>
-              shadow <span style="color:#859900">=</span> aug<span style="color:#859900">.</span>shadowRoot <span style="color:#859900">:</span>
-              shadow <span style="color:#859900">=</span> aug<span style="color:#859900">.</span>createShadowRoot({
-                mode<span style="color:#859900">:</span> <span style="color:#269186"><span style="color:#c60000">'</span>open<span style="color:#c60000">'</span></span>
-              })
-
-            <span style="color:#859900">if</span> (<span style="color:#859900">!</span>opts<span style="color:#859900">.</span>preserve)
-              shadow<span style="color:#859900">.</span>innerHTML <span style="color:#859900">=</span> <span style="color:#268bd2">this</span><span style="color:#859900">.</span>parseHandlebars(template, opts<span style="color:#859900">.</span>data)
+        <span style="color:#859900">if</span> (data) {
+          <span style="color:#859900">if</span> (data[dataVar<span style="color:#859900">.</span>replace(<span style="color:#859900">/</span> <span style="color:#859900">/</span>g, <span style="color:#269186"><span style="color:#c60000">'</span><span style="color:#c60000">'</span></span>)]) {
+            dataVar <span style="color:#859900">=</span> dataVar<span style="color:#859900">.</span>replace(<span style="color:#859900">/</span> <span style="color:#859900">/</span>g, <span style="color:#269186"><span style="color:#c60000">'</span><span style="color:#c60000">'</span></span>)
+            <span style="color:#859900">if</span> (isFunction(data[dataVar])) {
+              dataVar <span style="color:#859900">=</span> data[dataVar]()
+            } <span style="color:#859900">else</span> {
+              dataVar <span style="color:#859900">=</span> data[dataVar]
+            }
+          } <span style="color:#859900">else</span> {
+            let jsParse <span style="color:#859900">=</span> eval(`(function(){${dataVar}}())`)
+            <span style="color:#859900">if</span> (typeof jsParse <span style="color:#859900">==</span> <span style="color:#269186"><span style="color:#c60000">'</span>string<span style="color:#c60000">'</span></span> <span style="color:#859900">||</span> typeof jsParse <span style="color:#859900">==</span> <span style="color:#269186"><span style="color:#c60000">'</span>number<span style="color:#c60000">'</span></span>)
+              dataVar <span style="color:#859900">=</span> jsParse
             <span style="color:#859900">else</span>
-              shadow<span style="color:#859900">.</span>innerHTML <span style="color:#859900">=</span> template<span style="color:#859900">.</span>innerHTML
+              dataVar <span style="color:#859900">=</span> <span style="color:#269186"><span style="color:#c60000">'</span><span style="color:#c60000">'</span></span>
           }
+        } <span style="color:#859900">else</span> {
+          <span style="color:#586e75">// console.log(`Warning: {{${dataVar}}} has no existing data variable!`)</span>
+          dataVar <span style="color:#859900">=</span> arrowSwap(dataVar)
+          let jsParse <span style="color:#859900">=</span> eval(`(function(){${dataVar}}())`)
+          <span style="color:#859900">if</span> (typeof jsParse <span style="color:#859900">==</span> <span style="color:#269186"><span style="color:#c60000">'</span>string<span style="color:#c60000">'</span></span> <span style="color:#859900">||</span> typeof jsParse <span style="color:#859900">==</span> <span style="color:#269186"><span style="color:#c60000">'</span>number<span style="color:#c60000">'</span></span>)
+            dataVar <span style="color:#859900">=</span> jsParse
+          <span style="color:#859900">else</span>
+            dataVar <span style="color:#859900">=</span> <span style="color:#269186"><span style="color:#c60000">'</span><span style="color:#c60000">'</span></span>
         }
 
-
-        <span style="color:#586e75">// --- AugJS Public Helper Functions ---</span>
-
-        <span style="color:#586e75">/**
-         * findAugEl - Find element with specified selector tag
-         *
-         * <span style="color:#536871">@param</span>  {String} el      Element selector to search for
-         * <span style="color:#859900">@return</span> {HTMLObj}
-         */</span>
-
-        findAugEl({
-          el
-        } <span style="color:#859900">=</span> {}) {
-          <span style="color:#586e75">// console.log(`Searching for ${el}`)</span>
-
-          let augEl <span style="color:#859900">=</span> <span style="color:#268bd2">this</span><span style="color:#859900">.</span>select({
-            el
-          })
-
-          <span style="color:#859900">return</span> augEl <span style="color:#859900">?</span>
-            augEl <span style="color:#859900">:</span>
-            `err<span style="color:#859900">:</span> <span style="color:#738a05">No</span> element found with <span style="color:#cb4b16">ID</span> ${el}`
-        }
-
-
-        <span style="color:#586e75">/**
-         * findTemplate - Find template by ID
-         *
-         * <span style="color:#536871">@param</span>  {String} template        Template ID to search for
-         * <span style="color:#536871">@param</span>  {String} opts       Component name to search in
-         * <span style="color:#859900">@return</span> {HTMLObj} foundTemplate  The template element that was found
-         */</span>
-
-        findTemplate({
-          opts
-        } <span style="color:#859900">=</span> {}) {
-          let {
-            id
-          } <span style="color:#859900">=</span> opts<span style="color:#859900">.</span>template
-
-          <span style="color:#586e75">// console.log(`Searching for template with ID ${id}`)</span>
-
-          let template <span style="color:#859900">=</span> <span style="color:#268bd2">this</span><span style="color:#859900">.</span>select({
-            opts
-          })
-
-          <span style="color:#859900">return</span> template <span style="color:#859900">?</span>
-            template <span style="color:#859900">:</span>
-            `err<span style="color:#859900">:</span> <span style="color:#738a05">No</span> template with <span style="color:#cb4b16">ID</span> ${id} found<span style="color:#859900">.</span>`
-        }
-
-
-        <span style="color:#586e75">/**
-         * select - Finds element with {el} selector
-         *
-         * <span style="color:#536871">@param</span>  {String} el          Target element selector to search for
-         * <span style="color:#536871">@param</span>  {Obj}    opts        Opt. object with search options
-         * <span style="color:#859900">@return</span> {HTMLObj} selected   The element that was found (if any)
-         */</span>
-        select({
-          el,
-          opts
-        } <span style="color:#859900">=</span> {}) {
-
-          <span style="color:#859900">if</span> (el) {
-            <span style="color:#859900">return</span> document<span style="color:#859900">.</span>querySelectorAll(el)
-          }
-
-          <span style="color:#859900">if</span> (opts) {
-            <span style="color:#859900">return</span> <span style="color:#268bd2">this</span><span style="color:#859900">.</span>importSelectTemplate({
-              opts
-            })
-          }
-        }
-
-
-        <span style="color:#586e75">/**
-         * importSelectTemplate - Finds element within import with {el} selector
-         *
-         * <span style="color:#536871">@param</span>  {type}    template           description
-         * <span style="color:#536871">@param</span>  {type}    opts               Obj with import name
-         * <span style="color:#859900">@return</span> {HTMLOBj} importedTemplate
-         */</span>
-
-        importSelectTemplate({
-          opts
-        } <span style="color:#859900">=</span> {}) {
-
-          let {
-            id,
-            src
-          } <span style="color:#859900">=</span> opts<span style="color:#859900">.</span>template
-
-          let component <span style="color:#859900">=</span> document<span style="color:#859900">.</span>querySelector(`link[rel<span style="color:#859900">=</span>import][name<span style="color:#859900">=</span>${src}]`)
-
-          let importedTemplate <span style="color:#859900">=</span> component<span style="color:#859900">.</span>import<span style="color:#859900">.</span>querySelector(id)
-
-          <span style="color:#859900">return</span> importedTemplate <span style="color:#859900">?</span>
-            importedTemplate <span style="color:#859900">:</span>
-            `err<span style="color:#859900">:</span> <span style="color:#738a05">No</span> template with <span style="color:#cb4b16">ID</span> ${opts<span style="color:#859900">.</span>template} found<span style="color:#859900">.</span>`
-        }
-
-
-        <span style="color:#586e75">/**
-         * parseHandlebars - Takes in an HTML template and parses the '{{}}'s
-         *
-         * <span style="color:#536871">@param</span>  {type} template  description
-         * <span style="color:#536871">@param</span>  {type} data      description
-         * <span style="color:#859900">@return</span> {type}           description
-         */</span>
-        <span style="color:#268bd2">parseHandlebars</span>(template, data) {
-          let tem <span style="color:#859900">=</span> template<span style="color:#859900">.</span>innerHTML
-          let preserve <span style="color:#859900">=</span> <span style="color:#b58900">false</span>
-          <span style="color:#859900">if</span> (data) {
-            <span style="color:#859900">if</span> (data<span style="color:#859900">.</span>hasOwnProperty(<span style="color:#269186"><span style="color:#c60000">'</span>preserve<span style="color:#c60000">'</span></span>)) {
-              <span style="color:#859900">if</span> (data<span style="color:#859900">.</span>preserve <span style="color:#859900">==</span> <span style="color:#b58900">true</span>)
-                preserve <span style="color:#859900">=</span> <span style="color:#b58900">true</span>
-            }
-          }
-          <span style="color:#859900">if</span> (<span style="color:#859900">!</span>preserve) {
-            <span style="color:#859900">while</span> (tem<span style="color:#859900">.</span>includes(<span style="color:#269186"><span style="color:#c60000">'</span>{{<span style="color:#c60000">'</span></span>) <span style="color:#859900">&amp;&amp;</span> tem<span style="color:#859900">.</span>includes(<span style="color:#269186"><span style="color:#c60000">'</span>}}<span style="color:#c60000">'</span></span>)) {
-
-              let begin <span style="color:#859900">=</span> tem<span style="color:#859900">.</span>indexOf(<span style="color:#269186"><span style="color:#c60000">'</span>{{<span style="color:#c60000">'</span></span>)
-              let end <span style="color:#859900">=</span> tem<span style="color:#859900">.</span>indexOf(<span style="color:#269186"><span style="color:#c60000">'</span>}}<span style="color:#c60000">'</span></span>)
-              let dataVar <span style="color:#859900">=</span> tem<span style="color:#859900">.</span>slice(begin <span style="color:#859900">+</span> <span style="color:#d33682">2</span>, end)
-
-              <span style="color:#859900">if</span> (data) {
-                <span style="color:#859900">if</span> (data[dataVar<span style="color:#859900">.</span>replace(<span style="color:#859900">/</span> <span style="color:#859900">/</span>g, <span style="color:#269186"><span style="color:#c60000">'</span><span style="color:#c60000">'</span></span>)]) {
-                  dataVar <span style="color:#859900">=</span> dataVar<span style="color:#859900">.</span>replace(<span style="color:#859900">/</span> <span style="color:#859900">/</span>g, <span style="color:#269186"><span style="color:#c60000">'</span><span style="color:#c60000">'</span></span>)
-                  <span style="color:#859900">if</span> (isFunction(data[dataVar])) {
-                    dataVar <span style="color:#859900">=</span> data[dataVar]()
-                  } <span style="color:#859900">else</span> {
-                    dataVar <span style="color:#859900">=</span> data[dataVar]
-                  }
-                } <span style="color:#859900">else</span> {
-                  let jsParse <span style="color:#859900">=</span> eval(`(function(){${dataVar}}())`)
-                  <span style="color:#859900">if</span> (typeof jsParse <span style="color:#859900">==</span> <span style="color:#269186"><span style="color:#c60000">'</span>string<span style="color:#c60000">'</span></span> <span style="color:#859900">||</span> typeof jsParse <span style="color:#859900">==</span> <span style="color:#269186"><span style="color:#c60000">'</span>number<span style="color:#c60000">'</span></span>)
-                    dataVar <span style="color:#859900">=</span> jsParse
-                  <span style="color:#859900">else</span>
-                    dataVar <span style="color:#859900">=</span> <span style="color:#269186"><span style="color:#c60000">'</span><span style="color:#c60000">'</span></span>
-                }
-              } <span style="color:#859900">else</span> {
-                <span style="color:#586e75">// console.log(`Warning: {{${dataVar}}} has no existing data variable!`)</span>
-                dataVar <span style="color:#859900">=</span> arrowSwap(dataVar)
-                let jsParse <span style="color:#859900">=</span> eval(`(function(){${dataVar}}())`)
-                <span style="color:#859900">if</span> (typeof jsParse <span style="color:#859900">==</span> <span style="color:#269186"><span style="color:#c60000">'</span>string<span style="color:#c60000">'</span></span> <span style="color:#859900">||</span> typeof jsParse <span style="color:#859900">==</span> <span style="color:#269186"><span style="color:#c60000">'</span>number<span style="color:#c60000">'</span></span>)
-                  dataVar <span style="color:#859900">=</span> jsParse
-                <span style="color:#859900">else</span>
-                  dataVar <span style="color:#859900">=</span> <span style="color:#269186"><span style="color:#c60000">'</span><span style="color:#c60000">'</span></span>
-              }
-
-              tem <span style="color:#859900">=</span> tem<span style="color:#859900">.</span>slice(<span style="color:#d33682">0</span>, begin) <span style="color:#859900">+</span> dataVar <span style="color:#859900">+</span> tem<span style="color:#859900">.</span>slice(end <span style="color:#859900">+</span> <span style="color:#d33682">2</span>, tem<span style="color:#859900">.</span>length)
-
-            }
-          }
-
-
-          <span style="color:#859900">return</span> tem
-        }
+        tem <span style="color:#859900">=</span> tem<span style="color:#859900">.</span>slice(<span style="color:#d33682">0</span>, begin) <span style="color:#859900">+</span> dataVar <span style="color:#859900">+</span> tem<span style="color:#859900">.</span>slice(end <span style="color:#859900">+</span> <span style="color:#d33682">2</span>, tem<span style="color:#859900">.</span>length)
 
       }
+    }
 
-      <span style="color:#586e75">// Helper function that checks if a value is of type 'function'</span>
-      function isFunction(functionToCheck) {
-        var getType <span style="color:#859900">=</span> {}
-        <span style="color:#859900">return</span> functionToCheck <span style="color:#859900">&amp;&amp;</span> getType<span style="color:#859900">.</span>toString<span style="color:#859900">.</span>call(functionToCheck) <span style="color:#859900">===</span> <span style="color:#269186"><span style="color:#c60000">'</span>[object Function]<span style="color:#c60000">'</span></span>
-      }
 
-      <span style="color:#586e75">// Helper function to santize &amp;lt; and &amp;gt; into their respective arrow symbols</span>
-      function arrowSwap(string) {
-        <span style="color:#859900">return</span> string<span style="color:#859900">.</span>replace(<span style="color:#859900">/</span><span style="color:#859900">&amp;</span>lt;<span style="color:#859900">/</span>g, <span style="color:#269186"><span style="color:#c60000">'</span>&lt;<span style="color:#c60000">'</span></span>)<span style="color:#859900">.</span>replace(<span style="color:#859900">/</span><span style="color:#859900">&amp;</span>gt;<span style="color:#859900">/</span>g, <span style="color:#269186"><span style="color:#c60000">'</span>><span style="color:#c60000">'</span></span>)
-      }
+    <span style="color:#859900">return</span> tem
+  }
+
+}
+
+<span style="color:#586e75">// Helper function that checks if a value is of type 'function'</span>
+function isFunction(functionToCheck) {
+  var getType <span style="color:#859900">=</span> {}
+  <span style="color:#859900">return</span> functionToCheck <span style="color:#859900">&amp;&amp;</span> getType<span style="color:#859900">.</span>toString<span style="color:#859900">.</span>call(functionToCheck) <span style="color:#859900">===</span> <span style="color:#269186"><span style="color:#c60000">'</span>[object Function]<span style="color:#c60000">'</span></span>
+}
+
+<span style="color:#586e75">// Helper function to santize &amp;lt; and &amp;gt; into their respective arrow symbols</span>
+function arrowSwap(string) {
+  <span style="color:#859900">return</span> string<span style="color:#859900">.</span>replace(<span style="color:#859900">/</span><span style="color:#859900">&amp;</span>lt;<span style="color:#859900">/</span>g, <span style="color:#269186"><span style="color:#c60000">'</span>&lt;<span style="color:#c60000">'</span></span>)<span style="color:#859900">.</span>replace(<span style="color:#859900">/</span><span style="color:#859900">&amp;</span>gt;<span style="color:#859900">/</span>g, <span style="color:#269186"><span style="color:#c60000">'</span>><span style="color:#c60000">'</span></span>)
+}
 
       </pre>
     </div>

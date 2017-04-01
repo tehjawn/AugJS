@@ -2,6 +2,11 @@
   <style>
     @import url("tutorial.css");
     @import url("../styles/ideal.css");
+    h3 {
+      background-color: #15A0A5;
+      padding: 8px;
+      color: white;
+    }
   </style>
   <div class="ctn pad-bot">
     <h1>ES2015 / ES6 Tutorials</h1>
@@ -24,16 +29,254 @@
         <a href="https://github.com/lukehoban/es6features">ES6 Overview by Luke Hoban</a>
       </li>
     </ul>
-    <h3>1. Why the Upgrade from ES5 to ES6</h3>
-    <p>
-      From the ECMAScript Spec (First link in Quick Links sections above),
-      <br><br>
-      <code>
-        "Goals for ECMAScript 2015 include providing better support for large applications, library creation, and for use of ECMAScript as a compilation target for other languages. Some of its major enhancements include modules, class declarations, lexical block scoping, iterators and generators, promises for asynchronous programming, destructuring patterns, and proper tail calls. The ECMAScript library of built-ins has been expanded to support additional data abstractions including maps, sets, and arrays of binary numeric values as well as additional support for Unicode supplemental characters in strings and regular expressions. The built-ins are now extensible via subclassing."
-      </code>
-      <br><br>
-      Stuff
-    </p>
+
+    <hr>
+
+    <div id="intro">
+      <h3>Why the Upgrade from ES5 to ES6?</h3>
+      <p>
+        <strong>Coding with ES6 is <u>quick, flexible, and succinct</u>, moreso than ES5.</strong>
+      </p>
+      <p>
+        From the ECMAScript Spec (First link in Quick Links sections above),
+        <br><br>
+        <code>
+          "Goals for ECMAScript 2015 include providing better support for large applications, library creation, and for use of ECMAScript as a compilation target for other languages. Some of its major enhancements include <strong>modules, class declarations, lexical block scoping, iterators and generators, promises for asynchronous programming, destructuring patterns, and proper tail calls</strong>. The ECMAScript library of built-ins has been expanded to support additional data abstractions including maps, sets, and arrays of binary numeric values as well as additional support for Unicode supplemental characters in strings and regular expressions. The built-ins are now extensible via subclassing."
+        </code>
+      </p>
+      <p>
+        After switching from ES5 to ES6 for AugJS, the Javascript coding experience has improved massively for me!
+      </p>
+      <p>
+        <h4>ES6 Features that you'll need to know for AugJS v0.6.1</h4>
+        <ol>
+          <li>Let / Const</li>
+          <li>Classes</li>
+          <li>Fat Arrow Functions</li>
+          <li>Destructuring</li>
+          <li>Rest...Spread Operator</li>
+          <li>for _ of _</li>
+          <li>String Templating</li>
+        </ol>
+      </p>
+      <p>
+        Ready to learn about these features, what they do and why you should use them? Scroll down to continue the tutorial!
+      </p>
+      <p>
+        <small>Not ready for ES6? You can take a look at AugJS v0.3.0 which was written in ES5 <a href="https://tehjawn.github.io/AugJS/old/src3">here</a>.</small>
+      </p>
+    </div>
+
+    <hr>
+
+    <div id="classes">
+      <h3>Let / Const</h3>
+      <p>Instead of using 'var' for everything, you should now use 'let' for block-scoped variables and 'const' for constant variables.</p>
+      <p>Unlike 'var', 'let' is block-scoped (not global). Additionally it throws an error if you try to create a new variable that uses a name that already exists. Let's take a look at a comparison.</p>
+  <pre class="code-block" style="background:#042029;color:#839496"><span style="color:#586e75">// ES5 Way</span>
+
+<span style="color:#268bd2">var</span> foo <span style="color:#859900">=</span> <span style="color:#269186"><span style="color:#c60000">'</span>test<span style="color:#c60000">'</span></span>
+<span style="color:#268bd2">var</span> foo <span style="color:#859900">=</span> <span style="color:#269186"><span style="color:#c60000">'</span>bar<span style="color:#c60000">'</span></span>
+
+console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span>foo<span style="color:#93a1a1">)</span>
+
+<span style="color:#586e75">// returns => 'bar'</span>
+
+<span style="color:#586e75">// ES6 Way</span>
+
+let foo2 <span style="color:#859900">=</span> <span style="color:#269186"><span style="color:#c60000">'</span>test<span style="color:#c60000">'</span></span>
+let foo2 <span style="color:#859900">=</span> <span style="color:#269186"><span style="color:#c60000">'</span>bar<span style="color:#c60000">'</span></span>
+
+<span style="color:#586e75">// throws err => 'Identifier foo2 has already been declared'</span>
+</pre>
+      <h3>ES6 Classes</h3>
+      <p>Gone are the days of clunky object returns; instead we have new syntax sugar for classes now! If you've programmed with Java before, the syntax looks pretty similar here. Let's do a comparison.</p>
+      <strong><u>Sally's ES5 Way (Function Object Return Method)</u></strong>
+<pre class="code-block" style="background:#042029;color:#839496"><span style="color:#586e75">// Sally's Code</span>
+
+<span style="color:#268bd2">var</span> <span style="color:#a57800"><span style="color:#a57800">TestFW</span> <span style="color:#859900">=</span> <span style="color:#268bd2">function</span>()</span> <span style="color:#268bd2">{</span>
+  <span style="color:#268bd2">var</span> test <span style="color:#859900">=</span> <span style="color:#268bd2">{</span><span style="color:#268bd2">}</span>
+
+  test.text <span style="color:#859900">=</span> <span style="color:#269186"><span style="color:#c60000">"</span>Testing<span style="color:#c60000">"</span></span>
+  <span style="color:#a57800"><span style="color:#859900">test</span>.<span style="color:#a57800">hello</span> <span style="color:#859900">=</span> <span style="color:#268bd2">function</span>()</span> <span style="color:#268bd2">{</span>
+    console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">"</span>Hello, World!<span style="color:#c60000">"</span></span><span style="color:#93a1a1">)</span>
+  <span style="color:#268bd2">}</span>
+
+  <span style="color:#859900">return</span> test
+<span style="color:#268bd2">}</span>
+
+<span style="color:#268bd2">var</span> TestOne <span style="color:#859900">=</span> <span style="color:#859900">new</span> TestFW<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span>
+
+console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span>TestOne.text<span style="color:#93a1a1">)</span>
+TestOne.hello<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span>
+</pre>
+<br>
+      <strong><u>ES5 Way (Prototypes)</u></strong>
+<pre class="code-block" style="background:#042029;color:#839496"><span style="color:#586e75">// ES5 Way</span>
+
+<span style="color:#a57800"><span style="color:#268bd2">function</span> <span style="color:#a57800">TestFW</span>()</span> <span style="color:#268bd2">{</span>
+  <span style="color:#268bd2">this</span>.text <span style="color:#859900">=</span> <span style="color:#269186"><span style="color:#c60000">"</span>Testing<span style="color:#c60000">"</span></span>
+<span style="color:#268bd2">}</span>
+
+<span style="color:#859900">TestFW</span>.prototype.<span style="color:#a57800">hello</span> <span style="color:#859900">=</span> <span style="color:#268bd2">function</span>() <span style="color:#268bd2">{</span>
+  console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">"</span>Hello, World!<span style="color:#c60000">"</span></span><span style="color:#93a1a1">)</span>
+<span style="color:#268bd2">}</span>
+
+<span style="color:#268bd2">var</span> TestTwo <span style="color:#859900">=</span> <span style="color:#859900">new</span> TestFW<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span>
+
+console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span>TestTwo.text<span style="color:#93a1a1">)</span>
+TestTwo.hello<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span>
+</pre>
+      <strong><u>ES6 Way (Classes)</u></strong>
+<pre class="code-block" style="background:#042029;color:#839496"><span style="color:#586e75">// ES6 Way</span>
+
+<span style="color:#268bd2">class</span> TestFW <span style="color:#268bd2">{</span>
+  constructor<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span> <span style="color:#268bd2">{</span>
+    <span style="color:#268bd2">this</span>.text <span style="color:#859900">=</span> <span style="color:#269186"><span style="color:#c60000">"</span>Testing<span style="color:#c60000">"</span></span>
+  <span style="color:#268bd2">}</span>
+
+  hello<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span> <span style="color:#268bd2">{</span>
+    console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">"</span>Hello, World!<span style="color:#c60000">"</span></span><span style="color:#93a1a1">)</span>
+  <span style="color:#268bd2">}</span>
+<span style="color:#268bd2">}</span>
+
+<span style="color:#268bd2">var</span> TestThree <span style="color:#859900">=</span> <span style="color:#859900">new</span> TestFW<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span>
+
+console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span>TestThree.text<span style="color:#93a1a1">)</span>
+TestThree.hello<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span>
+</pre>
+      <p>
+        With ES6 there is now a dedicated way to format classes similar to how other OOP languages do it - with a specified constructor! One thing that isn't addressed in ES6 though (that is addressed in supersets such as Typescript) are easily identified public, private and protected modifiers.
+      </p>
+      <p>
+        Not only does this lessen the lines of code needed from the Function Object Return method, but also makes the code look cleaner through greater readability. If you're doing any sort of OOP with Javascript, this new feature is an awesome one.
+      </p>
+    </div>
+
+    <hr>
+
+    <div id="fatArrow">
+      <h3>ES6 Fat Arrow Functions</h3>
+      <p>Fat arrow functions are just better anonymous functions. Not only does it lessen the code, but it also includes the lexical binding of the 'this' keyword.</p>
+      <p>The 'this' binding means you don't need to use the .bind() function passing in the 'this' context in some niche cases such as setTimeout functions!</p>
+      <p>Let's compare how it would work in ES5 vs. ES6.</p>
+      <strong><u>ES5 Way (.bind(this))</u></strong>
+<pre class="code-block" style="background:#042029;color:#839496"><span style="color:#586e75">// ES5 Way</span>
+
+<span style="color:#268bd2">var</span> cat <span style="color:#859900">=</span> <span style="color:#268bd2">{</span>
+  name: <span style="color:#269186"><span style="color:#c60000">"</span>Gus<span style="color:#c60000">"</span></span>,
+  color: <span style="color:#269186"><span style="color:#c60000">"</span>gray<span style="color:#c60000">"</span></span>,
+  age: <span style="color:#269186">15</span>,
+
+  <span style="color:#a57800">printInfo</span>: <span style="color:#268bd2">function</span>() <span style="color:#268bd2">{</span>
+    <span style="color:#a57800"><span style="color:#a57800">nestedFunction</span> <span style="color:#859900">=</span> <span style="color:#268bd2">function</span>()</span> <span style="color:#268bd2">{</span>
+      console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">"</span>Name:<span style="color:#c60000">"</span></span>, <span style="color:#268bd2">this</span>.name, <span style="color:#269186"><span style="color:#c60000">"</span>Color:<span style="color:#c60000">"</span></span>, <span style="color:#268bd2">this</span>.color, <span style="color:#269186"><span style="color:#c60000">"</span>Age:<span style="color:#c60000">"</span></span>, <span style="color:#268bd2">this</span>.age<span style="color:#93a1a1">)</span>;
+    <span style="color:#268bd2">}</span>
+
+    <span style="color:#268bd2">var</span> storeFunction <span style="color:#859900">=</span> nestedFunction.bind<span style="color:#93a1a1">(</span><span style="color:#268bd2">this</span><span style="color:#93a1a1">)</span>;
+    storeFunction<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span>;
+  <span style="color:#268bd2">}</span>
+<span style="color:#268bd2">}</span>
+
+cat.printInfo<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span>;
+</pre>
+      <strong><u>ES6 Way (Fat Arrow Functions)</u></strong>
+      <pre class="code-block" style="background:#042029;color:#839496"><span style="color:#586e75">// ES6 Way</span>
+
+<span style="color:#268bd2">var</span> cat <span style="color:#859900">=</span> <span style="color:#268bd2">{</span>
+  name: <span style="color:#269186"><span style="color:#c60000">"</span>Gus<span style="color:#c60000">"</span></span>,
+  color: <span style="color:#269186"><span style="color:#c60000">"</span>gray<span style="color:#c60000">"</span></span>,
+  age: <span style="color:#269186">15</span>,
+
+  <span style="color:#a57800">printInfo</span>: <span style="color:#268bd2">function</span>() <span style="color:#268bd2">{</span>
+    nestedFunction <span style="color:#859900">=</span> <span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span> <span style="color:#859900">=</span><span style="color:#859900">></span> <span style="color:#268bd2">{</span>
+      console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">"</span>Name:<span style="color:#c60000">"</span></span>, <span style="color:#268bd2">this</span>.name, <span style="color:#269186"><span style="color:#c60000">"</span>Color:<span style="color:#c60000">"</span></span>, <span style="color:#268bd2">this</span>.color, <span style="color:#269186"><span style="color:#c60000">"</span>Age:<span style="color:#c60000">"</span></span>, <span style="color:#268bd2">this</span>.age<span style="color:#93a1a1">)</span>;
+    <span style="color:#268bd2">}</span>
+
+    <span style="color:#268bd2">var</span> storeFunction <span style="color:#859900">=</span> nestedFunction;
+    storeFunction<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span>;
+  <span style="color:#268bd2">}</span>
+<span style="color:#268bd2">}</span>
+
+cat.printInfo<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span>;
+</pre>
+      <p>
+        There is a more subtle difference here than the difference between how to construct classes. In this case, the Arrow Function acts as an anonymous function that carries the 'this' binding with it.
+      </p>
+      <p>
+        In general, the Arrow function is used for anonymous functions for easier identification, lexical this binding, and cleaner code. Here's another use case of it.
+      </p>
+      <strong><u>ES5 Way (Regular Functions)</u></strong>
+<pre style="background:#042029;color:#839496"><span style="color:#586e75">// ES5 Way</span>
+
+<span style="color:#268bd2">var</span> numList <span style="color:#859900">=</span> <span style="color:#268bd2">[</span><span style="color:#269186">1</span>, <span style="color:#269186">2</span>, <span style="color:#269186">3</span><span style="color:#268bd2">]</span>
+
+numList.forEach<span style="color:#93a1a1">(</span><span style="color:#268bd2">function</span><span style="color:#93a1a1">(</span>num<span style="color:#93a1a1">)</span><span style="color:#268bd2">{</span>
+  console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span>num<span style="color:#93a1a1">)</span>
+<span style="color:#268bd2">}</span><span style="color:#93a1a1">)</span>
+
+<span style="color:#586e75">// => Returns '1', then '2', then '3'</span>
+</pre>
+      <strong><u>ES6 Way (Fat Arrow Functions)</u></strong>
+<pre class="code-block" style="background:#042029;color:#839496">// ES6 Way
+<span style="color:#268bd2">var</span> numList <span style="color:#859900">=</span> <span style="color:#268bd2">[</span><span style="color:#269186">1</span>, <span style="color:#269186">2</span>, <span style="color:#269186">3</span><span style="color:#268bd2">]</span>
+
+numList.forEach<span style="color:#93a1a1">(</span>num <span style="color:#859900">=</span><span style="color:#859900">></span> <span style="color:#268bd2">{</span>
+  console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span>num<span style="color:#93a1a1">)</span>
+<span style="color:#268bd2">}</span><span style="color:#93a1a1">)</span>
+
+<span style="color:#586e75">// => Returns '1', then '2', then '3'</span>
+</pre>
+      <p>
+        As you can see, there isn't a huge difference in these examples. As you scale up in your codebase however, this small change will make your code look more succinct and manageable and when you look back you'll appreciate the time you'll save utilizing them!
+      </p>
+    </div>
+
+    <hr>
+
+    <div id="destructuring">
+      <h3>ES6 Destructuring</h3>
+      <p>Destructuring allows you to pass in an object's key values directly into your functions / variables.</p>
+
+    </div>
+
+    <hr>
+
+    <div id="restSpread">
+      <h3>ES6 Rest...Spread Operator</h3>
+      <p>This is a new operator that allows you to expect a multitude of arguments instead of a set amount. It's on the same side of the spectrum of what destructuring is but aims to accomplish almost the opposite thing!</p>
+      <p>Unlike destructuring, which identifies target key values that are expected to be pulled in, using the rest...spread operator doesn't expect any exact values at all, but instead just a series of values.</p>
+      <p>Let's see it in action!</p>
+
+    </div>
+
+    <hr>
+
+    <div id="forOf">
+      <h3>ES6 For-Of Loops</h3>
+      <p></p>
+    </div>
+
+    <hr>
+
+    <div id="stringTemplating">
+      <h3>ES6 String Templating</h3>
+      <p></p>
+    </div>
+
+    <hr>
+
+    <div id="end">
+      <p>
+        That's it for now - you should be set to start reading the source code of AugJS v0.6.1!
+      </p>
+      <p>
+        If you'd like to learn more visit the ES6 official documentation here: <a href="http://www.ecma-international.org/ecma-262/6.0/">ECMAScript 2015 Spec</a>.
+      </p>
+      <p>
+        Now that that's done, you might want to get a quick overview of the Shadow DOM and how it works! Click on "Shadow DOM" below to get started.
+      </p>
+    </div>
 
   </div>
 </template>

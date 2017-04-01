@@ -41,3 +41,8 @@ ul.tutorial-options li a:hover {
 .tutorial-header {
   text-align: center;
 }
+
+.code-block {
+  padding: 16px;
+  overflow-x: scroll;
+}
