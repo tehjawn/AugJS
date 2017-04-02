@@ -12,7 +12,7 @@
     <h1>ES2015 / ES6 Tutorials</h1>
     <hr>
     <p>
-      ES2015, also known as ES6, is the 2015 standardized version of ECMAScript. ECMAScript is the technical name of Javascript (whereas Javascript is the marketed name of the language).
+      ES2015, also known as ES6, is the 2015 standardized version of ECMAScript. ECMAScript is the technical name of Javascript (whereas Javascript is the marketed name of the language) and was created by the European Computer Manufacturers Association to standardize the language.
     </p>
     <p>
       In this tutorial, we'll be discussing some core features of ES6, such as <strong>classes, destructuring and string templating</strong>, and how AugJS capitalizes their additions to the Javascript language.
@@ -52,10 +52,11 @@
         <ol>
           <li>Let / Const</li>
           <li>Classes</li>
-          <li>Fat Arrow Functions</li>
+          <li>Arrow Functions</li>
+          <li>Default Parameter Values</li>
           <li>Destructuring</li>
           <li>Rest...Spread Operator</li>
-          <li>for _ of _</li>
+          <li>for _ of _ Loops</li>
           <li>String Templating</li>
         </ol>
       </p>
@@ -69,7 +70,7 @@
 
     <hr>
 
-    <div id="classes">
+    <div id="letConst">
       <h3>Let / Const</h3>
       <p>Instead of using 'var' for everything, you should now use 'let' for block-scoped variables and 'const' for constant variables.</p>
       <p>Unlike 'var', 'let' is block-scoped (not global). Additionally it throws an error if you try to create a new variable that uses a name that already exists. Let's take a look at a comparison.</p>
@@ -89,6 +90,8 @@ let foo2 <span style="color:#859900">=</span> <span style="color:#269186"><span 
 
 <span style="color:#586e75">// throws err => 'Identifier foo2 has already been declared'</span>
 </pre>
+    </div>
+    <div id="classes">
       <h3>ES6 Classes</h3>
       <p>Gone are the days of clunky object returns; instead we have new syntax sugar for classes now! If you've programmed with Java before, the syntax looks pretty similar here. Let's do a comparison.</p>
       <strong><u>Sally's ES5 Way (Function Object Return Method)</u></strong>
@@ -155,9 +158,9 @@ TestThree.hello<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)
 
     <hr>
 
-    <div id="fatArrow">
-      <h3>ES6 Fat Arrow Functions</h3>
-      <p>Fat arrow functions are just better anonymous functions. Not only does it lessen the code, but it also includes the lexical binding of the 'this' keyword.</p>
+    <div id="arrowFuncs">
+      <h3>ES6 Arrow Functions</h3>
+      <p>Arrow functions are just better anonymous functions. Not only does it lessen the code, but it also includes the lexical binding of the 'this' keyword.</p>
       <p>The 'this' binding means you don't need to use the .bind() function passing in the 'this' context in some niche cases such as setTimeout functions!</p>
       <p>Let's compare how it would work in ES5 vs. ES6.</p>
       <strong><u>ES5 Way (.bind(this))</u></strong>
@@ -180,7 +183,7 @@ TestThree.hello<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)
 
 cat.printInfo<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span>;
 </pre>
-      <strong><u>ES6 Way (Fat Arrow Functions)</u></strong>
+      <strong><u>ES6 Way (Arrow Functions)</u></strong>
       <pre class="code-block" style="background:#042029;color:#839496"><span style="color:#586e75">// ES6 Way</span>
 
 <span style="color:#268bd2">var</span> cat <span style="color:#859900">=</span> <span style="color:#268bd2">{</span>
@@ -217,7 +220,7 @@ numList.forEach<span style="color:#93a1a1">(</span><span style="color:#268bd2">f
 
 <span style="color:#586e75">// => Returns '1', then '2', then '3'</span>
 </pre>
-      <strong><u>ES6 Way (Fat Arrow Functions)</u></strong>
+      <strong><u>ES6 Way (Arrow Functions)</u></strong>
 <pre class="code-block" style="background:#042029;color:#839496">// ES6 Way
 <span style="color:#268bd2">var</span> numList <span style="color:#859900">=</span> <span style="color:#268bd2">[</span><span style="color:#269186">1</span>, <span style="color:#269186">2</span>, <span style="color:#269186">3</span><span style="color:#268bd2">]</span>
 
@@ -234,10 +237,91 @@ numList.forEach<span style="color:#93a1a1">(</span>num <span style="color:#85990
 
     <hr>
 
+    <div id="defaultParamValues">
+      <h3>ES6 Default Parameter Values</h3>
+      <p>Default parameter values are handy to have as they move the process of default value assigning from the body of the code to the parameters.</p>
+      <p>
+        This feature helps sanitize and populate data to prevent logic errors from occurring in your code.
+      </p>
+      <p>Let's look at how this is done in ES5 vs in ES6.</p>
+
+      <strong><u>ES5 Way (Default Parameter Assignment Catch)</u></strong>
+      <pre class="code-block" style="background:#042029;color:#839496"><span style="color:#586e75">// ES5 Way</span>
+
+<span style="color:#a57800"><span style="color:#268bd2">function</span> <span style="color:#a57800">say</span>(message)</span> <span style="color:#268bd2">{</span>
+  <span style="color:#859900">if</span> <span style="color:#93a1a1">(</span><span style="color:#859900">!</span>message<span style="color:#93a1a1">)</span>
+    <span style="color:#268bd2">var</span> message <span style="color:#859900">=</span> <span style="color:#269186"><span style="color:#c60000">'</span>No message<span style="color:#c60000">'</span></span>
+  console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span>message<span style="color:#93a1a1">)</span>
+<span style="color:#268bd2">}</span>
+
+say<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>Hello ES5<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span>
+say<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span>
+
+<span style="color:#586e75">// returns ==> 'Hello', 'No message'</span>
+</pre>
+
+      <strong><u>ES6 Way (Declarative Default Parameter Assignment)</u></strong>
+      <pre class="code-block" style="background:#042029;color:#839496"><span style="color:#586e75">// ES6 Way</span>
+
+<span style="color:#a57800"><span style="color:#268bd2">function</span> <span style="color:#a57800">say</span>(message='No message')</span> <span style="color:#268bd2">{</span>
+  console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span>message<span style="color:#93a1a1">)</span>
+<span style="color:#268bd2">}</span>
+
+say<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>Hello ES6<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span>
+say<span style="color:#93a1a1">(</span><span style="color:#93a1a1">)</span>
+
+<span style="color:#586e75">// returns ==> 'Hello', 'No message'</span>
+</pre>
+
+      <p>Without the extra lines in ES5, an error would been thrown! Thanks to the default parameters of ES6 though, these types of errors can be handled with code that's a bit easier on the eyes.</p>
+      <p>This default parameter assignment can be extended to objects as well!</p>
+
+    </div>
+
+    <hr>
+
     <div id="destructuring">
       <h3>ES6 Destructuring</h3>
       <p>Destructuring allows you to pass in an object's key values directly into your functions / variables.</p>
+      <p>Like default parameter assignment, destructuring also allows you to manipulate how the data in your parameters are passed into your functions.</p>
+      <p>Let's look at how ES5 approaches this and then at how ES6 does it.</p>
+      <strong><u>ES5 Way (Object Destructuring within Function)</u></strong>
+      <pre class="code-block" style="background:#042029;color:#839496"><span style="color:#586e75">// ES5 Way</span>
 
+<span style="color:#a57800"><span style="color:#268bd2">function</span> <span style="color:#a57800">chatMessage</span>(chatObj)</span> <span style="color:#268bd2">{</span>
+  <span style="color:#268bd2">var</span> name <span style="color:#859900">=</span> chatObj.name
+  <span style="color:#268bd2">var</span> message <span style="color:#859900">=</span> chatObj.message
+
+  console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span>name <span style="color:#859900">+</span> <span style="color:#269186"><span style="color:#c60000">'</span> says: <span style="color:#c60000">'</span></span> <span style="color:#859900">+</span> message<span style="color:#93a1a1">)</span>
+<span style="color:#268bd2">}</span>
+
+chatMessage<span style="color:#93a1a1">(</span><span style="color:#268bd2">{</span>
+  name: <span style="color:#269186"><span style="color:#c60000">"</span>John<span style="color:#c60000">"</span></span>,
+  message: <span style="color:#269186"><span style="color:#c60000">"</span>Hi ES5!<span style="color:#c60000">"</span></span>
+<span style="color:#268bd2">}</span><span style="color:#93a1a1">)</span>
+
+<span style="color:#586e75">// returns => "John says: Hi ES5!"</span>
+</pre>
+
+      <strong><u>ES6 Way (Object Destructuring within Parameters)</u></strong>
+      <pre class="code-block" style="background:#042029;color:#839496"><span style="color:#586e75">// ES6 Way</span>
+
+<span style="color:#a57800"><span style="color:#268bd2">function</span> <span style="color:#a57800">chatMessage</span>({ name, message })</span> <span style="color:#268bd2">{</span>
+  console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span>name <span style="color:#859900">+</span> <span style="color:#269186"><span style="color:#c60000">'</span> says: <span style="color:#c60000">'</span></span> <span style="color:#859900">+</span> message<span style="color:#93a1a1">)</span>
+<span style="color:#268bd2">}</span>
+
+chatMessage<span style="color:#93a1a1">(</span><span style="color:#268bd2">{</span>
+  name: <span style="color:#269186"><span style="color:#c60000">"</span>John<span style="color:#c60000">"</span></span>,
+  message: <span style="color:#269186"><span style="color:#c60000">"</span>Hi ES6!<span style="color:#c60000">"</span></span>
+<span style="color:#268bd2">}</span><span style="color:#93a1a1">)</span>
+
+<span style="color:#586e75">// returns => "John says: Hi ES6!"</span>
+</pre>
+
+      <p>As you can see, destructuring is pretty straightforward. An object is expected to be passed in with certain parameters, and all you have to do is define what parameters are expected.</p>
+      <p>
+        Not only does this approach help you better visualize your parameters, but it also keeps your function pure in the fact it only utilizes the object parameters it knows to accept. This also strengthens the security of your function.
+      </p>
     </div>
 
     <hr>
@@ -247,21 +331,78 @@ numList.forEach<span style="color:#93a1a1">(</span>num <span style="color:#85990
       <p>This is a new operator that allows you to expect a multitude of arguments instead of a set amount. It's on the same side of the spectrum of what destructuring is but aims to accomplish almost the opposite thing!</p>
       <p>Unlike destructuring, which identifies target key values that are expected to be pulled in, using the rest...spread operator doesn't expect any exact values at all, but instead just a series of values.</p>
       <p>Let's see it in action!</p>
+<pre class="code-block" style="background:#042029;color:#839496"><span style="color:#a57800"><span style="color:#268bd2">function</span> <span style="color:#a57800">sumAll</span>(...nums)</span> <span style="color:#268bd2">{</span>
+  <span style="color:#268bd2">var</span> sum <span style="color:#859900">=</span> <span style="color:#269186">0</span>
+
+  nums.forEach<span style="color:#93a1a1">(</span><span style="color:#268bd2">function</span><span style="color:#93a1a1">(</span>num<span style="color:#93a1a1">)</span> <span style="color:#268bd2">{</span>
+    sum <span style="color:#859900">+</span><span style="color:#859900">=</span> num
+  <span style="color:#268bd2">}</span><span style="color:#93a1a1">)</span>
+
+  <span style="color:#859900">return</span> sum
+<span style="color:#268bd2">}</span>
+
+console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span>sumAll<span style="color:#93a1a1">(</span><span style="color:#269186">1</span>, <span style="color:#269186">2</span>, <span style="color:#269186">3</span><span style="color:#93a1a1">)</span><span style="color:#93a1a1">)</span>
+<span style="color:#586e75">// returns => '6'</span>
+</pre>
+
+      <p>
+        Pretty neat! We passed in an unknown number of parameters and dealt with each one in the same way.
+      </p>
 
     </div>
 
     <hr>
 
-    <div id="forOf">
+    <div id="forOfLoops">
       <h3>ES6 For-Of Loops</h3>
-      <p></p>
+      <p>If you're familiar with for x <strong><u>in</u></strong> y loops, for x <strong><u>of</u></strong> y loops are pretty similar!</p>
+      <p>The main difference between these two loops is the fact that the for-of loop uses the <u>value</u> of the corresponding iterable item rather than the key.</p>
+      <p>Let's do a for-in and for-of loop comparison.</p>
+      <pre class="code-block" style="background:#042029;color:#839496"><span style="color:#268bd2">var</span> nums <span style="color:#859900">=</span> <span style="color:#268bd2">[</span><span style="color:#269186">1</span>, <span style="color:#269186">2</span>, <span style="color:#269186">3</span><span style="color:#268bd2">]</span>
+
+<span style="color:#859900">for</span> <span style="color:#93a1a1">(</span>num <span style="color:#859900">in</span> nums<span style="color:#93a1a1">)</span> <span style="color:#268bd2">{</span>
+  console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span>num<span style="color:#93a1a1">)</span>
+<span style="color:#268bd2">}</span>
+
+<span style="color:#586e75">// returns => '0', '1', '2'</span>
+
+<span style="color:#859900">for</span> <span style="color:#93a1a1">(</span>num of nums<span style="color:#93a1a1">)</span> <span style="color:#268bd2">{</span>
+  console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span>num<span style="color:#93a1a1">)</span>
+<span style="color:#268bd2">}</span>
+
+<span style="color:#586e75">// returns => 1', '2', '3'</span>
+</pre>
+      <p>Of course, you can achieve this functionality with a for-in loop as well, but you'd have to write some extra code that targets the parent array / object and point to the key first. The for-of loop allows you to skip that boilerplate and do the same thing with less lines of code.</p>
     </div>
 
     <hr>
 
     <div id="stringTemplating">
       <h3>ES6 String Templating</h3>
-      <p></p>
+      <p>String templating allows you to embed Javascript expressions into strings. That's it!</p>
+      <p>This is one of my favorite features of ES6. It's so simple, but can be applied to pretty much anything that uses strings, such as DOM templating and data logging!</p>
+      <p>There are currently two other ways to achieve this in ES5 including String Concatenation and the Substitution Method.</p>
+      <p>In terms of space and readibility however, String Templating trumps both.</p>
+      <p>Let's take a look at the comparison.</p>
+      <pre class="code-block" style="background:#042029;color:#839496"><span style="color:#268bd2">var</span> a <span style="color:#859900">=</span> <span style="color:#269186">1</span>
+<span style="color:#268bd2">var</span> b <span style="color:#859900">=</span> <span style="color:#269186">2</span>
+
+<span style="color:#586e75">// String Concatenation</span>
+console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span>a <span style="color:#859900">+</span> <span style="color:#269186"><span style="color:#c60000">'</span> + <span style="color:#c60000">'</span></span> <span style="color:#859900">+</span> b <span style="color:#859900">+</span> <span style="color:#269186"><span style="color:#c60000">'</span> = <span style="color:#c60000">'</span></span> <span style="color:#859900">+</span> <span style="color:#93a1a1">(</span>a<span style="color:#859900">+</span>b<span style="color:#93a1a1">)</span><span style="color:#93a1a1">)</span>
+<span style="color:#586e75">// returns => '1 + 2 = 3'</span>
+
+<span style="color:#586e75">// Substitution Method</span>
+console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>%d + %d = %d<span style="color:#c60000">'</span></span>, a, b, a<span style="color:#859900">+</span>b<span style="color:#93a1a1">)</span>
+<span style="color:#586e75">// returns => '1 + 2 = 3'</span>
+
+<span style="color:#586e75">// String Templating</span>
+console<span style="color:#268bd2">.log</span><span style="color:#93a1a1">(</span>`<span style="color:#859900">$</span><span style="color:#268bd2">{</span>a<span style="color:#268bd2">}</span> <span style="color:#859900">+</span> <span style="color:#859900">$</span><span style="color:#268bd2">{</span>b<span style="color:#268bd2">}</span> <span style="color:#859900">=</span> <span style="color:#859900">$</span><span style="color:#268bd2">{</span>a<span style="color:#859900">+</span>b<span style="color:#268bd2">}</span>`<span style="color:#93a1a1">)</span>
+<span style="color:#586e75">// returns => '1 + 2 = 3'</span>
+</pre>
+      <p>
+        Pretty straightforward, right? Instead of using regular quotes, you use a backquote to indicate where your string template begins. Throughout your string template, just encase any JS expressions you'd like to include with a '${_insert your expression here_}' and you're good to go!
+      </p>
+      <p>String templates can also span multiple lines, so they're perfect for DOM templating.</p>
     </div>
 
     <hr>

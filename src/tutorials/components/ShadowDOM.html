@@ -20,7 +20,56 @@
     </ul>
     <h3>1. What the Shadow DOM Looks Like</h3>
     <p>
-      Stuff goes here
+      The Shadow DOM is pretty much what it sounds like - a hidden DOM. It lies behind more complex DOM elements and you can see it if you enable 'user Shadow DOM' in your Chrome Dev Tools settings.
     </p>
+    <center>
+      <img src="../../img/shadow-dom1.png" style="max-width: 100%" alt="">
+      <br>
+      <small><em>Figure 1. The Shadow DOM of your typical text input element</em></small>
+    </center>
+    <p>
+      As seen in figure one, the text input can be expanded out once you toggle the visibility of Shadow DOM on in Chrome.
+    </p>
+    <p>
+      Inside, there is a mysterious object labeled as the '#shadow-root'. This object is where the Shadow DOM lies.
+    </p>
+    <hr>
+    <h3>2. How the Shadow DOM Works</h3>
+    <p>
+      Inside of the Shadow Root, the HTML and CSS here is scoped to the attached element which means it is mostly independent of anything else outside of itself.
+    </p>
+    <p>
+      We could have a CSS class with the same name as the one inside of the Shadow Root (such as 'inner-editor'), however as long as our definition of the class lies outside of the Shadow Root, it will not affect any of the items inside!
+    </p>
+    <p>
+      This is how AugJS achieves its scoped CSS capability - by utilizing the isolated nature of the Shadow DOM and appending a Shadow Root to all custom Augjects.
+    </p>
+    <hr>
+    <h3>3. Coding with Shadow DOM</h3>
+    <p>
+      If you've ever set the innerHTML of an element to something using Javascript, getting started with the Shadow DOM will be a breeze.
+    </p>
+    <p>
+      All you have to do is set up a Shadow Root, append it to your target element and you're done! The rest is the same.
+    </p>
+    <p>
+      Let's see it in action!
+    </p>
+    <iframe height='300' scrolling='no' title='Shadow DOM Example' src='//codepen.io/tehjawn/embed/ZeweKZ/?height=300&theme-id=28633&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='http://codepen.io/tehjawn/pen/ZeweKZ/'>Shadow DOM Example</a> by John Nguyen (<a href='http://codepen.io/tehjawn'>@tehjawn</a>) on <a href='http://codepen.io'>CodePen</a>.
+    </iframe>
+    <p>
+      And... well, yeah! That's pretty much all there is to it! From here, you can do things like load templates or HTML from other files or variables and just set the innerHTML of the shadow root to whatever you want and you're done!
+    </p>
+    <p>
+      That being said, accessing your Shadow DOM elements isn't like accessing your normal elements. You'll have to select the shadow root of the target element first, and do a .getElementById on that shadow root in order to find elements within shadow roots, for example.
+    </p>
+    <p>
+      This means that in general cases, the utilization of Shadow DOM will make Javascript manipulation between different Shadow DOM nodes a big pain, but this actually isn't too bad for static site use cases!
+    </p>
+    <p>
+      I hope you learned a bit about what the Shadow DOM is, what it looks like, and how to use it!
+    </p>
+    <hr>
+    <p>For more information check out the other tutorials on ES6 and AugJS below! There are also some examples of AugJS as well so you can see real use cases of it. Also you can inspect any page on this site and see how the Shadow DOM and Javascript is structured to get a better idea of how your pages will end up looking if you decide to use AugJS!</p>
   </div>
 </template>
