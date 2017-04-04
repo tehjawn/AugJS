@@ -2,11 +2,13 @@
 
 # AugJS
 
-### A Simple Component-based Javascript Framework
+### A Simple Component-based Javascript Framework for Chrome and Opera
 
 ---
 
 AugJS is a simple, streamlined UI Templating framework that acts as a light-weight wrapper around the upcoming Web Component and Shadow DOM standards.
+
+Since the technologies it uses isn't standardized just yet, it only works on Google Chrome and Opera Browser.
 
 AugJS is useful when used across multiple small, single-page applications that utilize the same modules and/or widgets which only require declarative, one-way data binding.
 
@@ -22,6 +24,9 @@ View it in action [here](https://tehjawn.github.io/AugJS/src/)
 
 ### Changelist
 
+#### 4/01/2017
+
+- ES6 and Shadow DOM Tutorials done
 
 #### 3/24/2017
 
